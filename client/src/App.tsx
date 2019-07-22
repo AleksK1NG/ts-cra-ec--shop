@@ -1,16 +1,16 @@
-import React, { Fragment, Suspense } from 'react';
-import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import React, { Fragment, Suspense } from 'react'
+import { connect } from 'react-redux'
+import { Route, Switch } from 'react-router-dom'
 
-import { getPostsRequest } from './store/modules/shop/shopActions';
-import { alexNameSelector } from './store/modules/shop/shopSelectors';
-import './App.css';
+import { getPostsRequest } from './store/modules/shop/shopActions'
+import { alexNameSelector } from './store/modules/shop/shopSelectors'
+import './App.css'
 
-const Routes = React.lazy(() => import('./routes/routes'));
+const Routes = React.lazy(() => import('./routes/routes'))
 
 interface IProps {
-  name?: string;
-  getPostsRequest: () => void;
+  name?: string
+  getPostsRequest: () => void
 }
 
 const App: React.FC<IProps> = ({ name, getPostsRequest }) => {
@@ -24,12 +24,12 @@ const App: React.FC<IProps> = ({ name, getPostsRequest }) => {
         </Switch>
       </Suspense>
     </Fragment>
-  );
-};
+  )
+}
 
 export default connect(
   (state) => ({
     name: alexNameSelector(state)
   }),
   { getPostsRequest }
-)(App);
+)(App)
