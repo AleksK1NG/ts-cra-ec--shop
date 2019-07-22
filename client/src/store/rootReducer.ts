@@ -74,4 +74,6 @@ const rootReducer = combineReducers({
   router: connectRouter(history)
 });
 
+export type AppState = ReturnType<typeof rootReducer>;
+
 export default persistReducer(persistConfig, rootReducer)
