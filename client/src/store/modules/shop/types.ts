@@ -52,16 +52,16 @@ interface GetItemsError {
 
 interface GetCategoryItemsRequest {
   type: typeof GET_CATEGORY_ITEMS_REQUEST
-  payload?: any
+  payload?: {categoryId: string }
 }
 
 interface GetCategoryItemsSuccess {
   type: typeof GET_CATEGORY_ITEMS_SUCCESS
-  payload: { items: IItem[] }
+  payload?: { items: IItem[], categoryId: string }
 }
 interface GetCategoryItemsError {
   type: typeof GET_CATEGORY_ITEMS_ERROR
-  payload: { error: any }
+  payload?: { error: any }
 }
 
 export type ShopActions =

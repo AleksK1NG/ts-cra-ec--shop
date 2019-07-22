@@ -56,13 +56,14 @@ export const getItemsError = (error: any): ShopActions => ({
   payload: { error }
 })
 
-export const getCategoryItemsRequest = (): ShopActions => ({
-  type: GET_CATEGORY_ITEMS_REQUEST
+export const getCategoryItemsRequest = (categoryId: string): ShopActions => ({
+  type: GET_CATEGORY_ITEMS_REQUEST,
+  payload: { categoryId }
 })
 
-export const getCategoryItemsSuccess = (items: IItem[]): ShopActions => ({
+export const getCategoryItemsSuccess = (items: IItem[], categoryId: string): ShopActions => ({
   type: GET_CATEGORY_ITEMS_SUCCESS,
-  payload: { items }
+  payload: { items, categoryId }
 })
 
 export const getCategoryItemsError = (error: any): ShopActions => ({
