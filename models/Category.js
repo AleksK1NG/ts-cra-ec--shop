@@ -12,8 +12,7 @@ const collectionSchema = new mongoose.Schema({
   },
   items: [{
     type: mongoose.Schema.ObjectId,
-    ref: 'Item',
-    required: [true, 'Item must belong to a collection !']
+    ref: 'Item'
   }],
   createdAt: {
     type: Date,
@@ -25,6 +24,6 @@ const collectionSchema = new mongoose.Schema({
 
 
 
-const Collection = mongoose.model('Collection', collectionSchema)
+const Category = mongoose.model('Category', collectionSchema)
 
-module.exports = Collection
+module.exports = Category
