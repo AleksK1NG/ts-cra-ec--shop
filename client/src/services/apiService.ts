@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { ICategory, IItem } from '../models/models'
 
 /*
  * Api Service
@@ -70,15 +71,15 @@ class ApiService {
   }
 
   public getAllCategories() {
-    return axios.get(apiUrls.CATEGORY_URL)
+    return axios.get<ICategory[]>(apiUrls.CATEGORY_URL)
   }
 
   public getAllItems() {
-    return axios.get(apiUrls.ITEM_URL)
+    return axios.get<IItem[]>(apiUrls.ITEM_URL)
   }
 
   public getCategoryItems(categoryId: string) {
-    return axios.get(`${apiUrls.ITEM_URL}/category/${categoryId}`)
+    return axios.get<IItem[]>(`${apiUrls.ITEM_URL}/category/${categoryId}`)
   }
 
 }
