@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 
 import { getPostsRequest } from './store/modules/shop/shopActions'
 import { alexNameSelector } from './store/modules/shop/shopSelectors'
-import './App.css'
+import './App.scss'
 
 const Routes = React.lazy(() => import('./routes/routes'))
 
