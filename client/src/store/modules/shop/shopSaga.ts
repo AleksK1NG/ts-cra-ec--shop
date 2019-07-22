@@ -4,12 +4,15 @@ import axios from 'axios'
 import {
   getCategoriesError,
   getCategoriesSuccess,
+  getCategoryItemsError,
+  getCategoryItemsRequest,
+  getCategoryItemsSuccess,
   getItemsError,
   getItemsSuccess,
   getPostsError,
   getPostsSuccess
 } from './shopActions'
-import { GET_ALL_CATEGORIES_REQUEST, GET_ITEMS_REQUEST, shopActions } from './types'
+import { GET_ALL_CATEGORIES_REQUEST, GET_CATEGORY_ITEMS_REQUEST, GET_ITEMS_REQUEST, shopActions } from './types'
 
 export function* getPostsSaga(): any {
   try {
@@ -44,10 +47,23 @@ export function* getAllItemsSaga(): any {
   }
 }
 
+export function* getCategoryItemsSaga(action: any): any {
+  const { payload } = action
+  try {
+    const { data } = yield call(ApiService.getCategoryItems, payload.categoryId)
+    debugger
+    yield put(getCategoryItemsSuccess(data, payload.categoryId))
+  } catch (error) {
+    console.error(error)
+    yield put(getCategoryItemsError(error))
+  }
+}
+
 export function* saga() {
   yield all([
     takeLatest(shopActions.GET_POSTS_REQUEST, getPostsSaga),
     takeLatest(GET_ALL_CATEGORIES_REQUEST, getAllCategoriesSaga),
-    takeLatest(GET_ITEMS_REQUEST, getAllItemsSaga)
+    takeLatest(GET_ITEMS_REQUEST, getAllItemsSaga),
+    takeLatest(GET_CATEGORY_ITEMS_REQUEST, getCategoryItemsSaga)
   ])
 }

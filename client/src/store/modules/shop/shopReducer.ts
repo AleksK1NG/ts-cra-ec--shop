@@ -1,4 +1,14 @@
-import { GET_ALL_CATEGORIES_ERROR, GET_ALL_CATEGORIES_REQUEST, GET_ALL_CATEGORIES_SUCCESS, ShopActions } from './types'
+import {
+  GET_ALL_CATEGORIES_ERROR,
+  GET_ALL_CATEGORIES_REQUEST,
+  GET_ALL_CATEGORIES_SUCCESS,
+  GET_CATEGORY_ITEMS_ERROR,
+  GET_CATEGORY_ITEMS_REQUEST,
+  GET_CATEGORY_ITEMS_SUCCESS,
+  GET_ITEMS_ERROR,
+  GET_ITEMS_REQUEST,
+  ShopActions
+} from './types'
 import { produce } from 'immer'
 import { ICategory, IItem } from '../../../models/models'
 
@@ -7,7 +17,7 @@ export interface ShopState {
   posts?: any[] | null
   isLoading: boolean
   error: any
-  categories: ICategory[] | null
+  categories: ICategory[]
   items: IItem[] | null
 }
 interface Action {
@@ -20,16 +30,18 @@ const initialState: ShopState = {
   posts: null,
   isLoading: false,
   error: null,
-  categories: null,
+  categories: [],
   items: null
 }
 
 export const shopReducer = (state = initialState, action: ShopActions): ShopState =>
-  produce(state, (draft: ShopState) => {
+  <ShopState>produce(state, (draft: ShopState) => {
     const { type, payload } = action
 
     switch (type) {
       case GET_ALL_CATEGORIES_REQUEST:
+      case GET_CATEGORY_ITEMS_REQUEST:
+      case GET_ITEMS_REQUEST:
         draft.isLoading = true
         return
 
@@ -39,7 +51,31 @@ export const shopReducer = (state = initialState, action: ShopActions): ShopStat
         draft.isLoading = false
         return
 
+      case GET_CATEGORY_ITEMS_SUCCESS:
+        if (draft.categories.length !== 0) {
+          debugger
+          const index = draft.categories.findIndex((cat) => cat._id === payload.categoryId)
+          if (index > -1) {
+            draft.categories[index].items = payload.items
+            debugger
+            draft.error = null
+            draft.isLoading = false
+            return
+          }
+        debugger
+          draft.categories = []
+          draft.isLoading = false
+          return
+
+          // draft.categories = draft.categories.map(category => category._id === payload.categoryId ? category.items.concat(payload.items) : category)
+        }
+        draft.categories = []
+        draft.isLoading = false
+        return
+
       case GET_ALL_CATEGORIES_ERROR:
+      case GET_CATEGORY_ITEMS_ERROR:
+      case GET_ITEMS_ERROR:
         draft.error = payload.error
         draft.isLoading = false
         return

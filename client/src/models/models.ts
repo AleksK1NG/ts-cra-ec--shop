@@ -6,7 +6,7 @@ export interface ISection {
 }
 
 export interface ICategory {
-  items: any[]
+  items: IItem[]
   createdAt: string
   updatedAt: string
   _id: string
