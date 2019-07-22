@@ -1,8 +1,15 @@
 import { put, all, takeLatest, call } from 'redux-saga/effects'
 import ApiService from '../../../services/apiService'
 import axios from 'axios'
-import { getCategoriesError, getCategoriesSuccess, getPostsError, getPostsSuccess } from './shopActions'
-import { GET_ALL_CATEGORIES_REQUEST, shopActions } from './types'
+import {
+  getCategoriesError,
+  getCategoriesSuccess,
+  getItemsError,
+  getItemsSuccess,
+  getPostsError,
+  getPostsSuccess
+} from './shopActions'
+import { GET_ALL_CATEGORIES_REQUEST, GET_ITEMS_REQUEST, shopActions } from './types'
 
 export function* getPostsSaga(): any {
   try {
@@ -26,9 +33,21 @@ export function* getAllCategoriesSaga(): any {
   }
 }
 
+export function* getAllItemsSaga(): any {
+  try {
+    const { data } = yield call(ApiService.getAllItems)
+    debugger
+    yield put(getItemsSuccess(data))
+  } catch (error) {
+    console.error(error)
+    yield put(getItemsError(error))
+  }
+}
+
 export function* saga() {
   yield all([
     takeLatest(shopActions.GET_POSTS_REQUEST, getPostsSaga),
-    takeLatest(GET_ALL_CATEGORIES_REQUEST, getAllCategoriesSaga)
+    takeLatest(GET_ALL_CATEGORIES_REQUEST, getAllCategoriesSaga),
+    takeLatest(GET_ITEMS_REQUEST, getAllItemsSaga)
   ])
 }
