@@ -14,10 +14,10 @@ const itemSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Price is required']
   },
-  collection: {
+  category: {
     type: mongoose.Schema.ObjectId,
-    ref: 'Collection',
-    required: [true, 'Collection must belong to a item!']
+    ref: 'Category',
+    required: [true, 'Category must belong to a item!']
   },
   createdAt: {
     type: Date,

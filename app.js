@@ -19,6 +19,8 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
 const userRouter = require('./routes/userRoutes')
 const sectionRouter = require('./routes/sectionRoutes')
+const categoryRouter = require('./routes/categoryRoutes')
+const itemRouter = require('./routes/itemRoutes')
 
 // Start express app
 const app = express()
@@ -79,6 +81,8 @@ app.use(compression())
 // ROUTES
 app.use('/api/v1/user', userRouter)
 app.use('/api/v1/section', sectionRouter)
+app.use('/api/v1/category', categoryRouter)
+app.use('/api/v1/item', itemRouter)
 
 app.get('/', (req, res) => {
   res.json({ message: 'Success' })
