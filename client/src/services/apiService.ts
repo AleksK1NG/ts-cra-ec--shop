@@ -9,7 +9,9 @@ const apiUrls = {
   USER_REGISTER_URL: '/api/v1/user/register',
   USER_LOGIN_URL: '/api/v1/user/login',
   USER_ME_URL: '/api/v1/user/me',
-  SHOP_SECTIONS_URL: '/api/v1/section'
+  SHOP_SECTIONS_URL: '/api/v1/section',
+  CATEGORY_URL: '/api/v1/category',
+  ITEM_URL: '/api/v1/item'
 }
 
 const STRIPE_PAYMENT_URL = '/payment'
@@ -35,7 +37,7 @@ axiosInstance.interceptors.request.use(
 )
 
 class ApiService {
-  static registerUser(userData: any) {
+  public registerUser(userData: any) {
     const config = {
       headers: {
         'Content-Type': 'application/json'
@@ -45,7 +47,7 @@ class ApiService {
     return axios.post(apiUrls.USER_REGISTER_URL, userData, config)
   }
 
-  static loginUser(userData: any) {
+  public loginUser(userData: any) {
     const config = {
       headers: {
         'Content-Type': 'application/json'
@@ -55,17 +57,30 @@ class ApiService {
     return axios.post(apiUrls.USER_LOGIN_URL, userData, config)
   }
 
-  static loadUser() {
+  public loadUser() {
     return axiosInstance.get(apiUrls.USER_ME_URL)
   }
 
-  static getSections() {
+  public getSections() {
     return axios.get(apiUrls.SHOP_SECTIONS_URL)
   }
 
-  static stripePayment(paymentData: any) {
+  public stripePayment(paymentData: any) {
     return axios.post(STRIPE_PAYMENT_URL, paymentData)
   }
+
+  public getAllCategories() {
+    return axios.get(apiUrls.CATEGORY_URL)
+  }
+
+  public getAllItems() {
+    return axios.get(apiUrls.ITEM_URL)
+  }
+
+  public getCategoryItems(categoryId: string) {
+    return axios.get(`${apiUrls.ITEM_URL}/category/${categoryId}`)
+  }
+
 }
 
 export default new ApiService()
