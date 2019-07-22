@@ -4,7 +4,7 @@ import './HomePage.styles.scss'
 
 const HomePage: React.FC = () => {
   return (
-    <div>
+    <div className="homepage">
       <h1 className="home">Home page 12</h1>
     </div>
   )

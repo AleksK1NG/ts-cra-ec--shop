@@ -4,7 +4,7 @@ import './MenuItem.styles.scss'
 interface IProps {
   title: string
   imageUrl: string
-  size: string
+  size?: string
 }
 
 const MenuItem: React.FC<IProps> = ({ title, imageUrl, size }) => {

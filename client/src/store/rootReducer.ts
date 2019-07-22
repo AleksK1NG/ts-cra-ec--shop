@@ -1,26 +1,10 @@
-import { combineReducers } from 'redux';
-import { connectRouter } from 'connected-react-router';
-import { shopReducer } from './modules/shop/shopReducer';
-import { getStateFromStorage, getUid, saveStateToStorage, deleteStorage } from './helpers';
-import history from '../history';
+import { combineReducers } from 'redux'
+import { connectRouter } from 'connected-react-router'
+import { shopReducer } from './modules/shop/shopReducer'
+import history from '../history'
 
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-
-
-
-import {
-  ADD_ITEM,
-  EDIT_ITEM,
-  DELETE_ITEM,
-  DELETE_ALL,
-  ItemsActions,
-  AddItemAction,
-  EditItemAction,
-  DeleteItemAction
-} from './actions';
-
-import { Item } from '../models';
 
 const persistConfig = {
   key: 'root',
@@ -28,52 +12,11 @@ const persistConfig = {
   whitelist: ['shop']
 }
 
-
-const addItem = (state: readonly Item[], { payload }: AddItemAction): readonly Item[] => {
-  const newState = [...state, { ...payload, id: getUid() }];
-  saveStateToStorage(newState);
-  return newState;
-};
-
-const editItem = (state: readonly Item[], { payload, index }: EditItemAction): readonly Item[] => {
-  const newState: Item[] = [...state];
-  if (newState[index]) newState[index] = { ...newState[index], ...payload };
-  saveStateToStorage(newState);
-  return newState;
-};
-
-const deleteItem = (state: readonly Item[], { index }: DeleteItemAction): readonly Item[] => {
-  const newState = state.slice(0, index).concat(state.slice(index + 1));
-  saveStateToStorage(newState);
-  return newState;
-};
-
-const deleteAll = (): Item[] => {
-  deleteStorage();
-  return [];
-};
-
-const items = (state: readonly Item[] = getStateFromStorage(), action: ItemsActions): readonly Item[] => {
-  switch (action.type) {
-    case ADD_ITEM:
-      return addItem(state, action);
-    case EDIT_ITEM:
-      return editItem(state, action);
-    case DELETE_ITEM:
-      return deleteItem(state, action);
-    case DELETE_ALL:
-      return deleteAll();
-    default:
-      return state;
-  }
-};
-
 const rootReducer = combineReducers({
-  items,
   shop: shopReducer,
   router: connectRouter(history)
-});
+})
 
-export type AppState = ReturnType<typeof rootReducer>;
+export type AppState = ReturnType<typeof rootReducer>
 
 export default persistReducer(persistConfig, rootReducer)
