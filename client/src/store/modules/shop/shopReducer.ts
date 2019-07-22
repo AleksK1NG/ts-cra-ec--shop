@@ -1,3 +1,4 @@
+import { produce } from 'immer'
 import {
   GET_ALL_CATEGORIES_ERROR,
   GET_ALL_CATEGORIES_REQUEST,
@@ -9,7 +10,6 @@ import {
   GET_ITEMS_REQUEST,
   ShopActions
 } from './types'
-import { produce } from 'immer'
 import { ICategory, IItem } from '../../../models/models'
 
 export interface ShopState {
@@ -35,7 +35,7 @@ const initialState: ShopState = {
 }
 
 export const shopReducer = (state = initialState, action: ShopActions): ShopState =>
-  <ShopState>produce(state, (draft: ShopState) => {
+  produce(state, (draft: ShopState) => {
     const { type, payload } = action
 
     switch (type) {
@@ -62,12 +62,6 @@ export const shopReducer = (state = initialState, action: ShopActions): ShopStat
             draft.isLoading = false
             return
           }
-        debugger
-          draft.categories = []
-          draft.isLoading = false
-          return
-
-          // draft.categories = draft.categories.map(category => category._id === payload.categoryId ? category.items.concat(payload.items) : category)
         }
         draft.categories = []
         draft.isLoading = false
