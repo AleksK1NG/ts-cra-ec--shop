@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux'
 import { connectRouter } from 'connected-react-router'
-import { shopReducer } from './modules/shop/shopReducer'
+import { shopReducer, ShopState } from './modules/shop/shopReducer'
 import history from '../history'
 
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import { AuthState } from './modules/auth/authReducer'
 
 const persistConfig = {
   key: 'root',
@@ -18,5 +19,11 @@ const rootReducer = combineReducers({
 })
 
 export type AppState = ReturnType<typeof rootReducer>
+
+// The top-level state object
+export interface ApplicationState {
+  shop: ShopState
+  auth: AuthState
+}
 
 export default persistReducer(persistConfig, rootReducer)
