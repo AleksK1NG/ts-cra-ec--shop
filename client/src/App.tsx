@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom'
 import { getCategoriesRequest, getCategoryItemsRequest, getPostsRequest } from './store/modules/shop/shopActions'
 import { alexNameSelector } from './store/modules/shop/shopSelectors'
 import './App.scss'
+import Header from './components/Header/Header'
 
 const Routes = React.lazy(() => import('./routes/routes'))
 
@@ -18,8 +19,7 @@ interface IProps {
 const App: React.FC<IProps> = ({ name, getPostsRequest, getCategoriesRequest, getCategoryItemsRequest }) => {
   return (
     <Fragment>
-      <h1>Cool {name} 1</h1>
-      <button onClick={() => getCategoryItemsRequest('5d35b2281a4d3a4f87052595')}>req name</button>
+      <Header />
       <Suspense fallback={<p>Loading ...</p>}>
         <Switch>
           <Route component={Routes} />
