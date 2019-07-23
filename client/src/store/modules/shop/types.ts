@@ -1,4 +1,5 @@
 import { ICategory, IItem } from '../../../models/models'
+import { AnyAction } from 'redux'
 
 export enum shopActions {
   GET_POSTS_REQUEST = 'GET_POSTS_REQUEST',
@@ -50,16 +51,16 @@ interface GetItemsError {
   payload: { error: any }
 }
 
-interface GetCategoryItemsRequest {
+interface GetCategoryItemsRequest extends AnyAction {
   type: typeof GET_CATEGORY_ITEMS_REQUEST
-  payload?: {categoryId: string }
+  payload?: { categoryId: string }
 }
 
-interface GetCategoryItemsSuccess {
+interface GetCategoryItemsSuccess extends AnyAction {
   type: typeof GET_CATEGORY_ITEMS_SUCCESS
-  payload?: { items: IItem[], categoryId: string }
+  payload?: { items: IItem[]; categoryId: string }
 }
-interface GetCategoryItemsError {
+interface GetCategoryItemsError extends AnyAction {
   type: typeof GET_CATEGORY_ITEMS_ERROR
   payload?: { error: any }
 }
