@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import './SignIn.styles.scss'
 import FormInput from '../Shared/FormInput/FormInput'
@@ -17,7 +17,6 @@ const initialState: IForm = {
 }
 
 const SignIn: React.FC = () => {
-  // const [values, setValues] = useState<IForm>(initialState)
   const [values, handleChange] = useForm(initialState)
 
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>): void => {
@@ -26,12 +25,6 @@ const SignIn: React.FC = () => {
     console.log('Form Submit values => ', values)
     // setValues({email: '', password: ''})
   }
-
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = e.target
-  //   console.log('change event => ', value)
-  //   setValues({ ...values, [name]: value })
-  // }
 
   return (
     <div className="sign-in">
