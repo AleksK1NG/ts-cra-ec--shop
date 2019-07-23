@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 import { connectRouter } from 'connected-react-router'
 import { shopReducer, ShopState } from './modules/shop/shopReducer'
+import { authReducer, AuthState } from './modules/auth/authReducer'
 import history from '../history'
 
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import { AuthState } from './modules/auth/authReducer'
 
 const persistConfig = {
   key: 'root',
@@ -15,6 +15,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   shop: shopReducer,
+  auth: authReducer,
   router: connectRouter(history)
 })
 
