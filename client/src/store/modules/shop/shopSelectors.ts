@@ -1,6 +1,5 @@
 import { createSelector } from 'reselect'
 import { ShopState } from './shopReducer'
-import { AppState } from '../../rootReducer'
 
 // Selectors
 
