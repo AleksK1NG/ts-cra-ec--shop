@@ -4,6 +4,8 @@ import './SignIn.styles.scss'
 import FormInput from '../Shared/FormInput/FormInput'
 import CustomButton from '../Shared/CustomButton/CustomButton'
 
+import { useForm } from '../../hooks/useForm'
+
 interface IForm {
   email: string
   password: string
@@ -15,7 +17,8 @@ const initialState: IForm = {
 }
 
 const SignIn: React.FC = () => {
-  const [values, setValues] = useState<IForm>(initialState)
+  // const [values, setValues] = useState<IForm>(initialState)
+  const [values, handleChange] = useForm(initialState)
 
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>): void => {
     e.preventDefault()
@@ -24,11 +27,11 @@ const SignIn: React.FC = () => {
     // setValues({email: '', password: ''})
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    console.log('change event => ', value)
-    setValues({ ...values, [name]: value })
-  }
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = e.target
+  //   console.log('change event => ', value)
+  //   setValues({ ...values, [name]: value })
+  // }
 
   return (
     <div className="sign-in">
