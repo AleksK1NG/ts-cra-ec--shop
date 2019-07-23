@@ -23,3 +23,11 @@ export interface IItem {
   createdAt: string
   updatedAt: string
 }
+
+
+export interface ICollectionItem {
+  id: string | number
+  imageUrl: string
+  name: string
+  price: number
+}

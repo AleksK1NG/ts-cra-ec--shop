@@ -1,23 +1,25 @@
-import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { routerMiddleware } from 'connected-react-router';
-import history from '../history';
+import { createStore, applyMiddleware } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
+import { routerMiddleware } from 'connected-react-router'
+import history from '../history'
 
-import { persistStore } from 'redux-persist';
+import { persistStore } from 'redux-persist'
 
-import createSagaMiddleware from 'redux-saga';
+import createSagaMiddleware from 'redux-saga'
 
-import rootReducer from './rootReducer';
-import rootSaga from './rootSaga';
+import rootReducer from './rootReducer'
+import rootSaga from './rootSaga'
 
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware()
 
-const enhancer = composeWithDevTools(applyMiddleware(sagaMiddleware, routerMiddleware(history)));
+const middlewares = [sagaMiddleware, routerMiddleware(history)]
 
-export const store = createStore(rootReducer, enhancer);
+const enhancer = composeWithDevTools(applyMiddleware(...middlewares))
 
-sagaMiddleware.run(rootSaga);
+export const store = createStore(rootReducer, enhancer)
 
-export const persistor = persistStore(store);
+sagaMiddleware.run(rootSaga)
 
-export default { store, persistor };
+export const persistor = persistStore(store)
+
+export default { store, persistor }
