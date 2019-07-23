@@ -31,3 +31,12 @@ export interface ICollectionItem {
   name: string
   price: number
 }
+
+export interface IUser {
+  _id: string
+  username: string
+  email: string
+  avatar?: string
+  info?: string
+  token?: string
+}
