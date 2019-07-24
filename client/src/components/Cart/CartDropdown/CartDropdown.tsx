@@ -1,13 +1,14 @@
 import React from 'react'
 
 import CustomButton from '../../Shared/CustomButton/CustomButton'
-import './CartDropdown.styles.scss'
 import { connect } from 'react-redux'
 import { AppState } from '../../../store/rootReducer'
 import { withRouter } from 'react-router-dom'
 import { RouteComponentProps } from 'react-router'
 import { cartItemsSelector, cartItemsTotalSelector } from '../../../store/modules/cart/cartSelectors'
 import { toggleCartHidden } from '../../../store/modules/UI/uiActions'
+
+import './CartDropdown.styles.scss'
 
 interface IProps extends RouteComponentProps {
   cartItems: any[]

@@ -30,6 +30,7 @@ export interface ICollectionItem {
   imageUrl: string
   name: string
   price: number
+  quantity?: number
 }
 
 export interface IUser {
