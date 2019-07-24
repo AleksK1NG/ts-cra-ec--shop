@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { AppState } from '../../../store/rootReducer'
 import { withRouter } from 'react-router-dom'
 import { RouteComponentProps } from 'react-router'
-import { cartItemsSelector, cartItemsTotalSelector } from '../../../store/modules/cart/cartSelectors'
+import { cartItemsSelector } from '../../../store/modules/cart/cartSelectors'
 import { toggleCartHidden } from '../../../store/modules/UI/uiActions'
 
 import CartItem from '../CartItem/CartItem'
@@ -13,11 +13,10 @@ import './CartDropdown.styles.scss'
 
 interface IProps extends RouteComponentProps {
   cartItems: any[]
-  totalCost: number
   toggleCartHidden: () => void
 }
 
-const CartDropdown: React.FC<IProps> = ({ history, toggleCartHidden, cartItems, totalCost }) => {
+const CartDropdown: React.FC<IProps> = ({ history, toggleCartHidden, cartItems }) => {
   const goCheckoutHandler = () => {
     history.push('/checkout')
     toggleCartHidden()
@@ -40,8 +39,7 @@ const CartDropdown: React.FC<IProps> = ({ history, toggleCartHidden, cartItems, 
 export default withRouter(
   connect(
     (state: AppState) => ({
-      cartItems: cartItemsSelector(state),
-      totalCost: cartItemsTotalSelector(state)
+      cartItems: cartItemsSelector(state)
     }),
     { toggleCartHidden }
   )(CartDropdown)
