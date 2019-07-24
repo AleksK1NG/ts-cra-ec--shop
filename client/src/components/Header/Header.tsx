@@ -29,7 +29,7 @@ const Header: React.FC<IProps> = ({ user, logoutRequest }) => {
           CONTACT
         </Link>
         {user ? (
-          <div className="option" onClick={logoutRequest}>
+          <div style={{ cursor: 'pointer' }} className="option" onClick={logoutRequest}>
             SIGN OUT
           </div>
         ) : (
