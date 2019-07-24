@@ -10,6 +10,7 @@ import { IUser } from '../../models/models'
 import { logoutRequest } from '../../store/modules/auth/authActions'
 import { showCartIconSelector } from '../../store/modules/UI/uiSelectors'
 import CartDropdown from '../Cart/CartDropdown/CartDropdown'
+import CartIcon from '../Cart/CartIcon/CartIcon'
 
 interface IProps {
   user: IUser | null
@@ -40,6 +41,7 @@ const Header: React.FC<IProps> = ({ user, logoutRequest, hidden }) => {
             SIGN IN
           </Link>
         )}
+        <CartIcon />
       </div>
       {hidden ? null : <CartDropdown />}
     </div>
