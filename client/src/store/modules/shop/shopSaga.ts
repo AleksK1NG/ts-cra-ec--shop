@@ -5,7 +5,6 @@ import {
   getCategoriesError,
   getCategoriesSuccess,
   getCategoryItemsError,
-  getCategoryItemsRequest,
   getCategoryItemsSuccess,
   getItemsError,
   getItemsSuccess,
@@ -15,6 +14,8 @@ import {
 import { GET_ALL_CATEGORIES_REQUEST, GET_CATEGORY_ITEMS_REQUEST, GET_ITEMS_REQUEST, shopActions } from './types'
 
 export function* getPostsSaga(): any {
+  console.log('before')
+  debugger
   try {
     const { data } = yield axios.get('https://jsonplaceholder.typicode.com/posts')
     debugger

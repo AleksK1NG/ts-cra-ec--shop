@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { ICategory, IItem } from '../models/models'
+import { ICategory, IItem, IUser } from '../models/models'
+import { ILoginForm } from '../components/SingIn/SignIn'
 
 /*
  * Api Service
@@ -48,13 +49,12 @@ class ApiService {
     return axios.post(apiUrls.USER_REGISTER_URL, userData, config)
   }
 
-  public loginUser(userData: any) {
+  public loginUser(userData: ILoginForm): Promise<IUser> {
     const config = {
       headers: {
         'Content-Type': 'application/json'
       }
     }
-
     return axios.post(apiUrls.USER_LOGIN_URL, userData, config)
   }
 

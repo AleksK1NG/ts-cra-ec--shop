@@ -1,17 +1,19 @@
 import { AuthAction, AuthActionTypes } from './types'
 import { IUser } from '../../../models/models'
+import { ILoginForm } from '../../../components/SingIn/SignIn'
 
-export const loginRequest = (): AuthAction => ({
-  type: AuthActionTypes.LOGIN_USER_REQUEST
+export const loginRequest = (userData: ILoginForm): AuthAction => ({
+  type: AuthActionTypes.LOGIN_USER_REQUEST,
+  payload: { userData }
 })
 
 export const loginSuccess = (user: IUser): AuthAction => ({
-  type: AuthActionTypes.LOGIN_USER_REQUEST,
+  type: AuthActionTypes.LOGIN_USER_SUCCESS,
   payload: { user }
 })
 
 export const loginError = (error: any): AuthAction => ({
-  type: AuthActionTypes.LOGIN_USER_REQUEST,
+  type: AuthActionTypes.LOGIN_USER_ERROR,
   payload: { error }
 })
 
