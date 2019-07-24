@@ -6,7 +6,7 @@ export interface UIState {
 }
 
 const initialState: UIState = {
-  showCartIcon: false
+  showCartIcon: true
 }
 
 export const uiReducer = (state = initialState, action: UIAction) =>
