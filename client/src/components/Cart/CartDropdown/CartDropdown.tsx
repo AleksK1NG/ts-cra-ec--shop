@@ -8,8 +8,9 @@ import { RouteComponentProps } from 'react-router'
 import { cartItemsSelector, cartItemsTotalSelector } from '../../../store/modules/cart/cartSelectors'
 import { toggleCartHidden } from '../../../store/modules/UI/uiActions'
 
-import './CartDropdown.styles.scss'
 import CartItem from '../CartItem/CartItem'
+import './CartDropdown.styles.scss'
+
 
 interface IProps extends RouteComponentProps {
   cartItems: any[]
