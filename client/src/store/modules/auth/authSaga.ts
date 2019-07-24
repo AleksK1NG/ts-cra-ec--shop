@@ -13,7 +13,7 @@ import {
 } from './authActions'
 import { AuthAction, AuthActionTypes } from './types'
 
-export function* loginUserSaga({ payload }: AuthAction): any {
+export function* loginUserSaga({ payload }: AuthAction) {
   const { userData } = payload
 
   try {
@@ -27,7 +27,7 @@ export function* loginUserSaga({ payload }: AuthAction): any {
   }
 }
 
-export function* registerUserSaga({ payload }: AuthAction): any {
+export function* registerUserSaga({ payload }: AuthAction) {
   const { userData } = payload
 
   try {
@@ -41,7 +41,7 @@ export function* registerUserSaga({ payload }: AuthAction): any {
   }
 }
 
-export function* loadUserSaga(action: any): any {
+export function* loadUserSaga() {
   try {
     const { data } = yield call(ApiService.loadUser)
     yield put(loadUserSuccess(data))
@@ -54,6 +54,7 @@ export function* loadUserSaga(action: any): any {
 export function* logoutSaga() {
   try {
     yield put(logoutSuccess())
+    localStorage.removeItem('auth-token')
     yield put(replace('/signin'))
   } catch (error) {
     console.error(error)
