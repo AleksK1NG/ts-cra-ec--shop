@@ -46,3 +46,16 @@ export const loadUserError = (error: any): AuthAction => ({
   type: AuthActionTypes.LOAD_USER_ERROR,
   payload: { error }
 })
+
+export const logoutRequest = (): AuthAction => ({
+  type: AuthActionTypes.LOGOUT_USER_REQUEST
+})
+
+export const logoutSuccess = (): AuthAction => ({
+  type: AuthActionTypes.LOGOUT_USER_SUCCESS
+})
+
+export const logoutError = (error: any): AuthAction => ({
+  type: AuthActionTypes.LOGOUT_USER_ERROR,
+  payload: { error }
+})
