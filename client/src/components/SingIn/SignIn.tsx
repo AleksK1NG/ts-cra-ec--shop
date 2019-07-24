@@ -28,7 +28,6 @@ const SignIn: React.FC<IProps> = ({ loginRequest }) => {
     e.preventDefault()
     if (!values.email || !values.password) return
 
-    console.log('Form Submit values => ', values)
     loginRequest(values)
     setValues({ email: '', password: '' })
   }

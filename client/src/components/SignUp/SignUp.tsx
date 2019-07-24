@@ -28,7 +28,6 @@ const SignUp: React.FC<IProps> = ({ registerRequest }) => {
     e.preventDefault()
     if (!email || !password || !username || password !== confirmPassword) return
 
-    console.log('Form Submit values => ', values)
     registerRequest(values)
     setValues(initialState)
   }
