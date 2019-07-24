@@ -6,6 +6,8 @@ import { AppState } from '../../rootReducer'
 
 const moduleName = 'auth'
 
-export const stateSelector = (state: AppState) => state[moduleName]
+export const authStateSelector = (state: AppState) => state.auth
 
-export const userSelector = createSelector(stateSelector, (state: AuthState) => state.user)
+
+
+export const userSelector = createSelector(authStateSelector, (state) => state.user)
