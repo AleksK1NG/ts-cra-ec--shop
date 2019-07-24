@@ -12,7 +12,7 @@ import storage from 'redux-persist/lib/storage'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['shop']
+  whitelist: ['cart']
 }
 
 const rootReducer = combineReducers({
@@ -23,10 +23,10 @@ const rootReducer = combineReducers({
   router: connectRouter(history)
 })
 
-export type AppState = ReturnType<typeof rootReducer>
+// export type AppState = ReturnType<typeof rootReducer>
 
 // The top-level state object
-export interface ApplicationState {
+export interface AppState {
   shop: ShopState
   auth: AuthState
   UI: UIState
