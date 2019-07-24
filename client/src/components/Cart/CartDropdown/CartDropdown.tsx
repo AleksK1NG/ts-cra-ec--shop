@@ -9,6 +9,7 @@ import { cartItemsSelector, cartItemsTotalSelector } from '../../../store/module
 import { toggleCartHidden } from '../../../store/modules/UI/uiActions'
 
 import './CartDropdown.styles.scss'
+import CartItem from '../CartItem/CartItem'
 
 interface IProps extends RouteComponentProps {
   cartItems: any[]
@@ -24,8 +25,12 @@ const CartDropdown: React.FC<IProps> = ({ history, toggleCartHidden, cartItems, 
 
   return (
     <div className="cart-dropdown">
-      <div className="cart-items" />
-      <CustomButton>GO TO CHECKOUT</CustomButton>
+      <div className="cart-items">
+        {cartItems.map((cartItem) => (
+          <CartItem key={cartItem.id} item={cartItem} />
+        ))}
+      </div>
+      <CustomButton onClick={goCheckoutHandler} >GO TO CHECKOUT</CustomButton>
     </div>
   )
 }

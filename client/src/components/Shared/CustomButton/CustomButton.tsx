@@ -2,13 +2,20 @@ import React from 'react'
 import './CustomButton.styles.scss'
 
 interface IProps {
-  otherProps?: any
-  type?: string
+  type?: any
+  onClick?: () => void
+  inverted?: boolean
+  isGoogleSignIn?: boolean
+  className?: any
 }
 
-const CustomButton: React.FC<IProps> = ({ otherProps, children }) => {
+const CustomButton: React.FC<IProps> = ({ children, onClick, inverted, isGoogleSignIn, ...otherProps }) => {
   return (
-    <button className="custom-button" {...otherProps}>
+    <button
+      onClick={onClick}
+      className={`${inverted ? 'inverted' : ''} ${isGoogleSignIn ? 'google-sign-in' : ''} custom-button`}
+      {...otherProps}
+    >
       {children}
     </button>
   )
