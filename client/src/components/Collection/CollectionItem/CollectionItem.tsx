@@ -1,14 +1,22 @@
 import React from 'react'
 import './CollectionItem.styles.scss'
+import { connect } from 'react-redux'
+import { addCartItem } from '../../../store/modules/cart/cartActions'
+import CustomButton from '../../Shared/CustomButton/CustomButton'
+import { ICollectionItem } from '../../../models/models'
 
 interface IProps {
-  id?: number | string
-  imageUrl: string
-  name: string
-  price: number
+  item: ICollectionItem
+  // id?: number | string
+  // imageUrl: string
+  // name: string
+  // price: number
+  addCartItem: (item: any) => void
 }
 
-const CollectionItem: React.FC<IProps> = ({ imageUrl, name, price, id }) => {
+const CollectionItem: React.FC<IProps> = ({ item, addCartItem }) => {
+  const { imageUrl, name, price, id } = item
+
   return (
     <div className="collection-item">
       <div
@@ -21,8 +29,14 @@ const CollectionItem: React.FC<IProps> = ({ imageUrl, name, price, id }) => {
         <span className="name">{name}</span>
         <span className="price">{price}</span>
       </div>
+      <CustomButton onClick={() => addCartItem(item)} inverted>
+        Add to cart
+      </CustomButton>
     </div>
   )
 }
 
-export default CollectionItem
+export default connect(
+  null,
+  { addCartItem }
+)(CollectionItem)
