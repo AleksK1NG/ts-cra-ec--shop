@@ -37,9 +37,17 @@ export const authReducer: Reducer<AuthState, any> = (state = initialState, actio
         draft.isLoading = false
         return
 
+      case AuthActionTypes.LOGOUT_USER_SUCCESS:
+        draft.user = null
+        draft.isAuthenticated = false
+        draft.error = null
+        draft.isLoading = false
+        return
+
       case AuthActionTypes.LOGIN_USER_ERROR:
       case AuthActionTypes.REGISTER_USER_ERROR:
       case AuthActionTypes.LOAD_USER_ERROR:
+      case AuthActionTypes.LOGOUT_USER_ERROR:
         draft.error = payload.error
         draft.isLoading = false
         draft.isAuthenticated = false
