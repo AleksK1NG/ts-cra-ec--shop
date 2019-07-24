@@ -26,10 +26,11 @@ const SignUp: React.FC<IProps> = ({ registerRequest }) => {
 
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>): void => {
     e.preventDefault()
-    if (!values.email || !values.password) return
+    if (!email || !password || !username || password !== confirmPassword) return
 
     console.log('Form Submit values => ', values)
-    // setValues({ email: '', password: '' })
+    registerRequest(values)
+    setValues(initialState)
   }
 
   return (

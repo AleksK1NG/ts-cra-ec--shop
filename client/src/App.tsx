@@ -20,7 +20,6 @@ const App: React.FC<IProps> = ({ name, getPostsRequest, getCategoriesRequest, ge
   return (
     <Fragment>
       <Header />
-      <button onClick={getPostsRequest}>test</button>
       <Suspense fallback={<p>Loading ...</p>}>
         <Switch>
           <Route component={Routes} />
