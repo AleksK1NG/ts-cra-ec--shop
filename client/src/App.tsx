@@ -1,22 +1,21 @@
-import React, { Fragment, Suspense } from 'react'
+import React, { Fragment, Suspense, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
-
-import { getCategoriesRequest, getCategoryItemsRequest, getPostsRequest } from './store/modules/shop/shopActions'
-import { alexNameSelector } from './store/modules/shop/shopSelectors'
-import './App.scss'
 import Header from './components/Header/Header'
+import { loadUserRequest } from './store/modules/auth/authActions'
+import './App.scss'
 
 const Routes = React.lazy(() => import('./routes/routes'))
 
 interface IProps {
-  name?: string
-  getPostsRequest: () => void
-  getCategoriesRequest: () => void
-  getCategoryItemsRequest: (categoryID: string) => void
+  loadUserRequest: () => void
 }
 
-const App: React.FC<IProps> = ({ name, getPostsRequest, getCategoriesRequest, getCategoryItemsRequest }) => {
+const App: React.FC<IProps> = ({ loadUserRequest }) => {
+  useEffect(() => {
+    loadUserRequest()
+  }, [loadUserRequest])
+
   return (
     <Fragment>
       <Header />
@@ -30,8 +29,6 @@ const App: React.FC<IProps> = ({ name, getPostsRequest, getCategoriesRequest, ge
 }
 
 export default connect(
-  (state) => ({
-    name: alexNameSelector(state)
-  }),
-  { getPostsRequest, getCategoriesRequest, getCategoryItemsRequest }
+  null,
+  { loadUserRequest }
 )(App)

@@ -27,7 +27,7 @@ const axiosInstance = axios.create({
 // Runs before every request
 axiosInstance.interceptors.request.use(
   function(config) {
-    const token = localStorage.getItem('mern-dev') || ''
+    const token = localStorage.getItem('auth-token') || ''
 
     if (token && token !== '') {
       config.headers['x-auth-token'] = token
@@ -38,28 +38,22 @@ axiosInstance.interceptors.request.use(
     return Promise.reject(err)
   }
 )
+const config = {
+  headers: {
+    'Content-Type': 'application/json'
+  }
+}
 
 class ApiService {
   public registerUser(userData: IRegisterForm): Promise<IUser> {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
-
     return axios.post(apiUrls.USER_REGISTER_URL, userData, config)
   }
 
   public loginUser(userData: ILoginForm): Promise<IUser> {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
     return axios.post(apiUrls.USER_LOGIN_URL, userData, config)
   }
 
-  public loadUser() {
+  public loadUser(): Promise<IUser> {
     return axiosInstance.get(apiUrls.USER_ME_URL)
   }
 
@@ -82,7 +76,6 @@ class ApiService {
   public getCategoryItems(categoryId: string) {
     return axios.get<IItem[]>(`${apiUrls.ITEM_URL}/category/${categoryId}`)
   }
-
 }
 
 export default new ApiService()
