@@ -6,22 +6,20 @@ import { AuthAction, AuthActionTypes } from './types'
 export function* loginUserSaga({ payload }: AuthAction): any {
   const { userData } = payload
 
-  console.log('Login saga => ')
   try {
     const { data } = yield call(ApiService.loginUser, userData)
-    debugger
     yield put(loginSuccess(data))
-    console.log('Login saga data => ', data)
   } catch (error) {
     console.error(error)
     yield put(loginError(error))
   }
 }
 
-export function* registerUserSaga(action: any): any {
-  const { payload } = action
+export function* registerUserSaga({ payload }: AuthAction): any {
+  const { userData } = payload
+
   try {
-    const { data } = yield call(ApiService.registerUser, payload.userData)
+    const { data } = yield call(ApiService.registerUser, userData)
     yield put(registerSuccess(data))
   } catch (error) {
     console.error(error)

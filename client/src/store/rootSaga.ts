@@ -1,4 +1,4 @@
-import { delay, put, all, call } from 'redux-saga/effects'
+import { all, call } from 'redux-saga/effects'
 import { saga as shopSaga } from './modules/shop/shopSaga'
 import { saga as authSaga } from './modules/auth/authSaga'
 

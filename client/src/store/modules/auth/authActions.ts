@@ -1,6 +1,7 @@
 import { AuthAction, AuthActionTypes } from './types'
 import { IUser } from '../../../models/models'
 import { ILoginForm } from '../../../components/SingIn/SignIn'
+import { IRegisterForm } from '../../../components/SignUp/SignUp'
 
 export const loginRequest = (userData: ILoginForm): AuthAction => ({
   type: AuthActionTypes.LOGIN_USER_REQUEST,
@@ -17,8 +18,9 @@ export const loginError = (error: any): AuthAction => ({
   payload: { error }
 })
 
-export const registerRequest = (): AuthAction => ({
-  type: AuthActionTypes.REGISTER_USER_REQUEST
+export const registerRequest = (userData: IRegisterForm): AuthAction => ({
+  type: AuthActionTypes.REGISTER_USER_REQUEST,
+  payload: { userData }
 })
 
 export const registerSuccess = (user: IUser): AuthAction => ({

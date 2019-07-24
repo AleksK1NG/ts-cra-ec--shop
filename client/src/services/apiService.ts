@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { ICategory, IItem, IUser } from '../models/models'
 import { ILoginForm } from '../components/SingIn/SignIn'
+import { IRegisterForm } from '../components/SignUp/SignUp'
 
 /*
  * Api Service
@@ -39,7 +40,7 @@ axiosInstance.interceptors.request.use(
 )
 
 class ApiService {
-  public registerUser(userData: any) {
+  public registerUser(userData: IRegisterForm): Promise<IUser> {
     const config = {
       headers: {
         'Content-Type': 'application/json'
