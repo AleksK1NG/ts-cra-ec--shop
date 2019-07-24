@@ -8,13 +8,16 @@ import { AppState } from '../../store/rootReducer'
 import { userSelector } from '../../store/modules/auth/authSelectors'
 import { IUser } from '../../models/models'
 import { logoutRequest } from '../../store/modules/auth/authActions'
+import { showCartIconSelector } from '../../store/modules/UI/uiSelectors'
+import CartDropdown from '../Cart/CartDropdown/CartDropdown'
 
 interface IProps {
   user: IUser | null
   logoutRequest: () => void
+  hidden: boolean
 }
 
-const Header: React.FC<IProps> = ({ user, logoutRequest }) => {
+const Header: React.FC<IProps> = ({ user, logoutRequest, hidden }) => {
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -38,13 +41,15 @@ const Header: React.FC<IProps> = ({ user, logoutRequest }) => {
           </Link>
         )}
       </div>
+      {hidden ? null : <CartDropdown />}
     </div>
   )
 }
 
 export default connect(
   (state: AppState) => ({
-    user: userSelector(state)
+    user: userSelector(state),
+    hidden: showCartIconSelector(state)
   }),
   { logoutRequest }
 )(Header)
