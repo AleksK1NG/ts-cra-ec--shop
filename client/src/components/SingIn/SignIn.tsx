@@ -1,29 +1,36 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 import './SignIn.styles.scss'
 import FormInput from '../Shared/FormInput/FormInput'
 import CustomButton from '../Shared/CustomButton/CustomButton'
 
 import { useForm } from '../../hooks/useForm'
+import { loginRequest } from '../../store/modules/auth/authActions'
 
-interface IForm {
+export interface ILoginForm {
   email: string
   password: string
 }
 
-const initialState: IForm = {
+const initialState: ILoginForm = {
   email: '',
   password: ''
 }
+interface IProps {
+  loginRequest: (userData: ILoginForm) => void
+}
 
-const SignIn: React.FC = () => {
-  const [values, handleChange] = useForm(initialState)
+const SignIn: React.FC<IProps> = ({ loginRequest }) => {
+  const [values, handleChange, setValues] = useForm(initialState)
 
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>): void => {
     e.preventDefault()
+    if (!values.email || !values.password) return
 
     console.log('Form Submit values => ', values)
-    // setValues({email: '', password: ''})
+    loginRequest(values)
+    setValues({ email: '', password: '' })
   }
 
   return (
@@ -47,4 +54,7 @@ const SignIn: React.FC = () => {
   )
 }
 
-export default SignIn
+export default connect(
+  null,
+  { loginRequest }
+)(SignIn)

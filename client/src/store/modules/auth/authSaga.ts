@@ -1,13 +1,17 @@
 import { put, all, takeLatest, call } from 'redux-saga/effects'
 import ApiService from '../../../services/apiService'
 import { loadUserError, loadUserSuccess, loginError, loginSuccess, registerError, registerSuccess } from './authActions'
-import { AuthActionTypes } from './types'
+import { AuthAction, AuthActionTypes } from './types'
 
-export function* loginUserSaga(action: any): any {
-  const { payload } = action
+export function* loginUserSaga({ payload }: AuthAction): any {
+  const { userData } = payload
+
+  console.log('Login saga => ')
   try {
-    const { data } = yield call(ApiService.loginUser, payload.userData)
+    const { data } = yield call(ApiService.loginUser, userData)
+    debugger
     yield put(loginSuccess(data))
+    console.log('Login saga data => ', data)
   } catch (error) {
     console.error(error)
     yield put(loginError(error))
