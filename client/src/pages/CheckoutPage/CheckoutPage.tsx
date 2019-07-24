@@ -4,9 +4,11 @@ import './CheckoutPage.styles.scss'
 import { connect } from 'react-redux'
 import { AppState } from '../../store/rootReducer'
 import { cartItemsSelector, cartItemsTotalSelector } from '../../store/modules/cart/cartSelectors'
+import CheckoutItem from '../../components/Checkout/CheckoutItem/CheckoutItem'
+import { ICollectionItem } from '../../models/models'
 
 interface IProps {
-  cartItems: any
+  cartItems: ICollectionItem[]
   total: number
 }
 
@@ -30,9 +32,9 @@ const CheckoutPage: React.FC<IProps> = ({ cartItems, total }) => {
           <span>Remove</span>
         </div>
       </div>
-      {/*{cartItems.map(cartItem => (*/}
-      {/*  <CheckoutItem key={cartItem.id} cartItem={cartItem} />*/}
-      {/*))}*/}
+      {cartItems.map((cartItem) => (
+        <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+      ))}
       <div className="total">TOTAL: ${total}</div>
     </div>
   )

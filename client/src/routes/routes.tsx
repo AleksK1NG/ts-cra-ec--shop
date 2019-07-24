@@ -9,6 +9,7 @@ import { IUser } from '../models/models'
 const HomePage = React.lazy(() => import('../pages/HomePage/HomePage'))
 const ShopPage = React.lazy(() => import('../pages/ShopPage/ShopPage'))
 const SignInAndSignUpPage = React.lazy(() => import('../pages/SignInAndSignUpPage/SignInAndSignUpPage'))
+const CheckoutPage = React.lazy(() => import('../pages/CheckoutPage/CheckoutPage'))
 
 interface IProps {
   user: IUser | null
@@ -19,6 +20,7 @@ const Routes: React.FC<IProps> = ({ user }) => {
     <Switch>
       <Route exact path="/" component={HomePage} />
       <Route path="/shop" component={ShopPage} />
+      <Route exact path="/checkout" component={CheckoutPage} />
       <Route path="/signin" render={() => (user ? <Redirect to="/" /> : <SignInAndSignUpPage />)} />
     </Switch>
   )
