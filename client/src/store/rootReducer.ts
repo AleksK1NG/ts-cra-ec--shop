@@ -3,6 +3,7 @@ import { connectRouter } from 'connected-react-router'
 import { shopReducer, ShopState } from './modules/shop/shopReducer'
 import { authReducer, AuthState } from './modules/auth/authReducer'
 import { uiReducer, UIState } from './modules/UI/uiReducer'
+import { cartReducer, CartState } from './modules/cart/cartReducer'
 import history from '../history'
 
 import { persistReducer } from 'redux-persist'
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   shop: shopReducer,
   auth: authReducer,
   UI: uiReducer,
+  cart: cartReducer,
   router: connectRouter(history)
 })
 
@@ -28,6 +30,7 @@ export interface ApplicationState {
   shop: ShopState
   auth: AuthState
   UI: UIState
+  cart: CartState
 }
 
 export default persistReducer(persistConfig, rootReducer)
