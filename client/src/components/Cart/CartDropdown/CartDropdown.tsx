@@ -1,7 +1,7 @@
 import React from 'react'
 
-import './CartDropdown.styles.scss'
 import CustomButton from '../../Shared/CustomButton/CustomButton'
+import './CartDropdown.styles.scss'
 
 const CartDropdown: React.FC = () => {
   return (
