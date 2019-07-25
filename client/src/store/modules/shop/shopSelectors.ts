@@ -13,6 +13,5 @@ export const alexNameSelector = createSelector(
 
 export const collectionsSelector = createSelector(
   shopSelector,
-  (state: ShopState) => state.collections
+  (shop: ShopState) => shop.collections
 )
-

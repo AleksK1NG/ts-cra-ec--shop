@@ -82,31 +82,3 @@ export const shopReducer = (state = initialState, action: ShopActions): ShopStat
         return state
     }
   })
-
-//
-//
-// export const shopReducer = (state = initialState, action: Action): IShop =>
-//   produce(state, (draft: IShop) => {
-//     const { type, payload } = action;
-//
-//     switch (type) {
-//       case shopActions.GET_POSTS_REQUEST:
-//         draft.isLoading = true;
-//         draft.name = 'Alex Bryksin';
-//         return ;
-//
-//       case shopActions.GET_POSTS_SUCCESS:
-//         draft.posts = payload.posts;
-//         draft.isLoading = false;
-//         draft.error = null;
-//         return ;
-//
-//       case shopActions.GET_POSTS_ERROR:
-//         draft.error = payload.error;
-//         draft.isLoading = false;
-//         return ;
-//
-//       default:
-//         return state;
-//     }
-//   });
