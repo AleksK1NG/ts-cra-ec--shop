@@ -1,34 +1,22 @@
-import React from 'react'
-import CollectionPreview from '../../components/Collection/CollectionPreview/CollectionPreview'
-import { connect } from 'react-redux'
-import { AppState } from '../../store/rootReducer'
-import { collectionsSelector } from '../../store/modules/shop/shopSelectors'
-import { ISDataCollection } from '../../store/modules/shop/shopData'
+import React, { Suspense } from 'react'
+import { Route } from 'react-router-dom'
+import { RouteComponentProps } from 'react-router'
+import './ShopPage.styles.scss'
 
-interface IProps {
-  collections: ISDataCollection[]
-}
+const CollectionsOverview = React.lazy(() =>
+  import('../../components/Collection/CollectionsOverview/CollectionsOverview')
+)
 
-const ShopPage: React.FC<IProps> = ({ collections }) => {
+interface IProps extends RouteComponentProps {}
+
+const ShopPage: React.FC<IProps> = ({ match }) => {
   return (
     <div className="shop-page">
-      {collections.map(({ id, ...otherProps }: ISDataCollection) => {
-        return (
-          <CollectionPreview
-            key={id}
-            title={otherProps.title}
-            items={otherProps.items}
-            routeName={otherProps.routeName}
-          />
-        )
-      })}
+      <Suspense fallback={<p>Loading ...</p>}>
+        <Route exact path={`${match.path}`} component={CollectionsOverview} />
+      </Suspense>
     </div>
   )
 }
 
-export default connect(
-  (state: AppState) => ({
-    collections: collectionsSelector(state)
-  }),
-  null
-)(ShopPage)
+export default ShopPage
