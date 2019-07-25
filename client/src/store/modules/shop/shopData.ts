@@ -1,5 +1,7 @@
-export const SHOP_DATA_OBJ: ISCollectionsObj = {
-  hats: {
+import { ISItem } from './mockData'
+
+export const SHOP_DATA: ISDataCollection[] = [
+  {
     id: 1,
     title: 'Hats',
     routeName: 'hats',
@@ -60,7 +62,7 @@ export const SHOP_DATA_OBJ: ISCollectionsObj = {
       }
     ]
   },
-  sneakers: {
+  {
     id: 2,
     title: 'Sneakers',
     routeName: 'sneakers',
@@ -115,7 +117,7 @@ export const SHOP_DATA_OBJ: ISCollectionsObj = {
       }
     ]
   },
-  jackets: {
+  {
     id: 3,
     title: 'Jackets',
     routeName: 'jackets',
@@ -152,7 +154,7 @@ export const SHOP_DATA_OBJ: ISCollectionsObj = {
       }
     ]
   },
-  womens: {
+  {
     id: 4,
     title: 'Womens',
     routeName: 'womens',
@@ -201,7 +203,7 @@ export const SHOP_DATA_OBJ: ISCollectionsObj = {
       }
     ]
   },
-  mens: {
+  {
     id: 5,
     title: 'Mens',
     routeName: 'mens',
@@ -244,22 +246,11 @@ export const SHOP_DATA_OBJ: ISCollectionsObj = {
       }
     ]
   }
-}
+]
 
-export interface ISCategory {
-  id: number | string
+export interface ISDataCollection {
+  id: string | number
   title: string
   routeName: string
   items: ISItem[]
-}
-
-export interface ISItem {
-  id: number | string
-  name: string
-  imageUrl: string
-  price: number
-}
-
-export interface ISCollectionsObj {
-  [key: string]: ISCategory
 }

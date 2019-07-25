@@ -4,16 +4,15 @@ import { AppState } from '../../rootReducer'
 
 // Selectors
 
-
-export const stateSelector = (state: AppState) => state.shop
+export const shopSelector = (state: AppState) => state.shop
 
 export const alexNameSelector = createSelector(
-  stateSelector,
+  shopSelector,
   (state: ShopState) => state.name
 )
 
-export const allPostsSelector = createSelector(
-  stateSelector,
-  (state: ShopState) => state.posts
-
+export const collectionsSelector = createSelector(
+  shopSelector,
+  (state: ShopState) => state.collections
 )
+
