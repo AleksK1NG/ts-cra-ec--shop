@@ -11,10 +11,11 @@ import {
   ShopActions
 } from './types'
 import { ICategory, IItem } from '../../../models/models'
-import { IShopData, SHOP_DATA } from './mockData'
+// import { ISCollections, SHOP_DATA } from './mockData'
+import { SHOP_DATA, ISDataCollection } from './shopData'
 
 export interface ShopState {
-  collections: IShopData
+  collections: ISDataCollection[]
   name: string
   posts?: any[] | null
   isLoading: boolean

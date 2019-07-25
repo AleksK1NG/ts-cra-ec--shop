@@ -1,11 +1,18 @@
 import React from 'react'
-import { SHOP_DATA } from './collections'
 import CollectionPreview from '../../components/Collection/CollectionPreview/CollectionPreview'
+import { connect } from 'react-redux'
+import { AppState } from '../../store/rootReducer'
+import { collectionsSelector } from '../../store/modules/shop/shopSelectors'
+import { ISDataCollection } from '../../store/modules/shop/shopData'
 
-const ShopPage: React.FC = () => {
+interface IProps {
+  collections: ISDataCollection[]
+}
+
+const ShopPage: React.FC<IProps> = ({ collections }) => {
   return (
     <div className="shop-page">
-      {SHOP_DATA.map(({ id, ...otherProps }) => {
+      {collections.map(({ id, ...otherProps }: ISDataCollection) => {
         console.log('other props => ', otherProps)
         return (
           <CollectionPreview
@@ -20,4 +27,9 @@ const ShopPage: React.FC = () => {
   )
 }
 
-export default ShopPage
+export default connect(
+  (state: AppState) => ({
+    collections: collectionsSelector(state)
+  }),
+  null
+)(ShopPage)
