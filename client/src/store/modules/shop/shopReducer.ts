@@ -11,8 +11,10 @@ import {
   ShopActions
 } from './types'
 import { ICategory, IItem } from '../../../models/models'
+import { IShopData, SHOP_DATA } from './mockData'
 
 export interface ShopState {
+  collections: IShopData
   name: string
   posts?: any[] | null
   isLoading: boolean
@@ -26,6 +28,7 @@ interface Action {
 }
 
 const initialState: ShopState = {
+  collections: SHOP_DATA,
   name: 'Alex',
   posts: null,
   isLoading: false,

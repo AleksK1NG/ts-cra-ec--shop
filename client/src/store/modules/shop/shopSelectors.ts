@@ -1,11 +1,11 @@
 import { createSelector } from 'reselect'
 import { ShopState } from './shopReducer'
+import { AppState } from '../../rootReducer'
 
 // Selectors
 
-const moduleName = 'shop'
 
-export const stateSelector = (state: any) => state[moduleName]
+export const stateSelector = (state: AppState) => state.shop
 
 export const alexNameSelector = createSelector(
   stateSelector,
@@ -15,4 +15,5 @@ export const alexNameSelector = createSelector(
 export const allPostsSelector = createSelector(
   stateSelector,
   (state: ShopState) => state.posts
+
 )

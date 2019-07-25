@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
-import MenuItem from '../Menu/MenuItem/MenuItem'
 import { AppState } from '../../store/rootReducer'
+
 import { sectionsSelector } from '../../store/modules/directory/directorySelector'
 import { ISection } from '../../store/modules/directory/mockData'
+import MenuItem from '../Menu/MenuItem/MenuItem'
 
 import './Directory.styles.scss'
 
