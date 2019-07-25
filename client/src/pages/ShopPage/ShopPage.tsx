@@ -13,7 +13,6 @@ const ShopPage: React.FC<IProps> = ({ collections }) => {
   return (
     <div className="shop-page">
       {collections.map(({ id, ...otherProps }: ISDataCollection) => {
-        console.log('other props => ', otherProps)
         return (
           <CollectionPreview
             key={id}
