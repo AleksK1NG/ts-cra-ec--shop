@@ -14,13 +14,11 @@ const StripeCheckoutButton: React.FC<IProps> = ({ price, stripePaymentRequest })
   const publishableKey = 'pk_test_LTPsxTlZIIXFQlB8FrLIDjco'
 
   const onToken = (token: any) => {
-    console.log('stripe token => ', token)
-
     const paymentData = {
       amount: priceForStripe,
       token: token
     }
-    debugger
+
     stripePaymentRequest(paymentData)
   }
 
