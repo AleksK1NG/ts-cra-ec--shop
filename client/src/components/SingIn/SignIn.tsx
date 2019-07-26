@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import './SignIn.styles.scss'
 import FormInput from '../Shared/FormInput/FormInput'
 import CustomButton from '../Shared/CustomButton/CustomButton'
 
 import { useForm } from '../../hooks/useForm'
 import { loginRequest } from '../../store/modules/auth/authActions'
+
+import { SignInTitle, SignInContainer, ButtonsBarContainer } from './SignIn.styles'
 
 export interface ILoginForm {
   email: string
@@ -33,8 +34,8 @@ const SignIn: React.FC<IProps> = ({ loginRequest }) => {
   }
 
   return (
-    <div className="sign-in">
-      <h2>I already have an account</h2>
+    <SignInContainer>
+      <SignInTitle>I already have an account</SignInTitle>
       <span>Sign in with your email and password</span>
 
       <form onSubmit={handleSubmit}>
@@ -47,9 +48,11 @@ const SignIn: React.FC<IProps> = ({ loginRequest }) => {
           label="password"
           required
         />
-        <CustomButton type="submit"> Sign in </CustomButton>
+        <ButtonsBarContainer>
+          <CustomButton type="submit"> Sign in </CustomButton>
+        </ButtonsBarContainer>
       </form>
-    </div>
+    </SignInContainer>
   )
 }
 
