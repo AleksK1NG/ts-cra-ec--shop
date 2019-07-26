@@ -20,3 +20,9 @@ export const collectionByUrlSelector = (url: string) =>
     collectionsSelector,
     (collections) => collections.filter((collection) => collection.routeName === url)
   )
+
+export const collectionUrlSelector = (url: string) =>
+  createSelector(
+    collectionsSelector,
+    (collections) => collections.find((col) => col.routeName === url)
+  )
