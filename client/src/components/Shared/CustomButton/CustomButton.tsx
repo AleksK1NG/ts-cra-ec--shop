@@ -1,5 +1,5 @@
 import React from 'react'
-import './CustomButton.styles.scss'
+import { CustomButtonContainer } from './CustomButton.styles'
 
 interface IProps {
   type?: any
@@ -11,13 +11,13 @@ interface IProps {
 
 const CustomButton: React.FC<IProps> = ({ children, onClick, inverted, isGoogleSignIn, ...otherProps }) => {
   return (
-    <button
+    <CustomButtonContainer
       onClick={onClick}
       className={`${inverted ? 'inverted' : ''} ${isGoogleSignIn ? 'google-sign-in' : ''} custom-button`}
       {...otherProps}
     >
       {children}
-    </button>
+    </CustomButtonContainer>
   )
 }
 

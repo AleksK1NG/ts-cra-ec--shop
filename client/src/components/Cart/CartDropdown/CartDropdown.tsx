@@ -36,7 +36,7 @@ const CartDropdown: React.FC<IProps> = ({ history, toggleCartHidden, cartItems }
           <EmptyMessageContainer>Your cart is empty</EmptyMessageContainer>
         )}
       </CartItemsContainer>
-      <CustomButton onClick={goCheckoutHandler}>GO TO CHECKOUT</CustomButton>
+      <CartDropdownButton onClick={goCheckoutHandler}>GO TO CHECKOUT</CartDropdownButton>
     </CartDropdownContainer>
   )
 }
