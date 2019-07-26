@@ -14,7 +14,6 @@ import {
   CartItemsContainer,
   CartDropdownButton
 } from './CartDropdown.styles'
-import CustomButton from '../../Shared/CustomButton/CustomButton'
 
 interface IProps extends RouteComponentProps {
   cartItems: any[]
