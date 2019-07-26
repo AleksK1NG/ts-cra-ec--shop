@@ -1,16 +1,6 @@
 import { ICategory, IItem } from '../../../models/models'
 import { AnyAction } from 'redux'
 
-export enum shopActions {
-  GET_POSTS_REQUEST = 'GET_POSTS_REQUEST',
-  GET_POSTS_SUCCESS = 'GET_POSTS_SUCCESS',
-  GET_POSTS_ERROR = 'GET_POSTS_ERROR'
-}
-export interface PostActions {
-  type: shopActions
-  payload?: any
-}
-
 export const GET_ALL_CATEGORIES_REQUEST = 'GET_ALL_CATEGORIES_REQUEST'
 export const GET_ALL_CATEGORIES_SUCCESS = 'GET_ALL_CATEGORIES_SUCCESS'
 export const GET_ALL_CATEGORIES_ERROR = 'GET_ALL_CATEGORIES_ERROR'
@@ -87,4 +77,3 @@ export enum ShopTypes {
   STRIPE_PAYMENT_SUCCESS = 'STRIPE_PAYMENT_SUCCESS',
   STRIPE_PAYMENT_ERROR = 'STRIPE_PAYMENT_ERROR'
 }
-

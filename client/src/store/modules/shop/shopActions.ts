@@ -8,27 +8,12 @@ import {
   GET_ITEMS_ERROR,
   GET_ITEMS_REQUEST,
   GET_ITEMS_SUCCESS,
-  PostActions,
   ShopAction,
   ShopActions,
-  shopActions,
   ShopTypes
 } from './types'
 import { ICategory, IItem, IPaymentData } from '../../../models/models'
 
-export const getPostsRequest = (): PostActions => ({
-  type: shopActions.GET_POSTS_REQUEST
-})
-
-export const getPostsSuccess = (posts: any[]): PostActions => ({
-  type: shopActions.GET_POSTS_SUCCESS,
-  payload: { posts }
-})
-
-export const getPostsError = (error: any): PostActions => ({
-  type: shopActions.GET_POSTS_ERROR,
-  payload: { error }
-})
 
 export const getCategoriesRequest = (): ShopActions => ({
   type: GET_ALL_CATEGORIES_REQUEST
