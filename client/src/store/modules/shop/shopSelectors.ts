@@ -15,3 +15,8 @@ export const collectionsSelector = createSelector(
   shopSelector,
   (shop: ShopState) => shop.collections
 )
+export const collectionByUrlSelector = (url: string) =>
+  createSelector(
+    collectionsSelector,
+    (collections) => collections.filter((collection) => collection.routeName === url)
+  )
