@@ -3,8 +3,9 @@ import { connect } from 'react-redux'
 import { AppState } from '../../store/rootReducer'
 import CollectionItem from '../../components/Collection/CollectionItem/CollectionItem'
 import { collectionUrlSelector } from '../../store/modules/shop/shopSelectors'
-import './CollectionPage.styles.scss'
 import { RouteComponentProps } from 'react-router'
+
+import { CollectionTitle, CollectionPageContainer, CollectionItemsContainer } from './CollectionPage.styles'
 
 interface MatchParams {
   collectionId: string
@@ -18,14 +19,14 @@ const CollectionPage: React.FC<IProps> = ({ collection }) => {
   const { title, items } = collection
 
   return (
-    <div className="collection-page">
-      <h2 className="title">{title}</h2>
-      <div className="items">
+    <CollectionPageContainer>
+      <CollectionTitle>{title}</CollectionTitle>
+      <CollectionItemsContainer>
         {items.map((item: any) => (
           <CollectionItem key={item.id} item={item} />
         ))}
-      </div>
-    </div>
+      </CollectionItemsContainer>
+    </CollectionPageContainer>
   )
 }
 
