@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import Header from './components/Header/Header'
 import { loadUserRequest } from './store/modules/auth/authActions'
-import './App.scss'
+import { GlobalStyle } from './globalStyles'
 
 const Routes = React.lazy(() => import('./routes/routes'))
 
@@ -18,6 +18,7 @@ const App: React.FC<IProps> = ({ loadUserRequest }) => {
 
   return (
     <Fragment>
+      <GlobalStyle />
       <Header />
       <Suspense fallback={<p>Loading ...</p>}>
         <Switch>
