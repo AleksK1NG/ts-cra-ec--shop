@@ -9,7 +9,7 @@ interface IProps {
   stripePaymentRequest: (paymentData: IPaymentData) => void
 }
 
-const StripeButton: React.FC<IProps> = ({ price, stripePaymentRequest }) => {
+const StripeCheckoutButton: React.FC<IProps> = ({ price, stripePaymentRequest }) => {
   const priceForStripe = price * 100
   const publishableKey = 'pk_test_LTPsxTlZIIXFQlB8FrLIDjco'
 
@@ -44,4 +44,4 @@ const StripeButton: React.FC<IProps> = ({ price, stripePaymentRequest }) => {
 export default connect(
   null,
   { stripePaymentRequest }
-)(StripeButton)
+)(StripeCheckoutButton)
