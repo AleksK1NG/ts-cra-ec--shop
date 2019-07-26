@@ -26,3 +26,9 @@ export const collectionUrlSelector = (url: string) =>
     collectionsSelector,
     (collections) => collections.find((col) => col.routeName === url)
   )
+
+// For Map version
+// export const collectionObjSelector = createSelector(
+//   collectionsSelector,
+//   (collections) => collections.keys(collections).map((key) => collections[key])
+// )
