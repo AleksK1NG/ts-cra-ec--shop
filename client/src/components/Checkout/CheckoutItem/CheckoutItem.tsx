@@ -4,7 +4,13 @@ import { ICollectionItem } from '../../../models/models'
 import { connect } from 'react-redux'
 import { addCartItem, clearItemFromCart, deleteCartItem } from '../../../store/modules/cart/cartActions'
 
-import './CheckoutItem.styles.scss'
+import {
+  CheckoutItemContainer,
+  TextContainer,
+  RemoveButtonContainer,
+  QuantityContainer,
+  ImageContainer
+} from './CheckoutItem.styles'
 
 interface IProps {
   cartItem: ICollectionItem
@@ -17,12 +23,12 @@ const CheckoutItem: React.FC<IProps> = ({ cartItem, deleteCartItem, clearItemFro
   const { name, imageUrl, price, quantity } = cartItem
 
   return (
-    <div className="checkout-item">
-      <div className="image-container">
+    <CheckoutItemContainer>
+      <ImageContainer>
         <img src={imageUrl} alt="item" />
-      </div>
-      <span className="name">{name}</span>
-      <span className="quantity">
+      </ImageContainer>
+      <TextContainer>{name}</TextContainer>
+      <QuantityContainer>
         <div className="arrow" onClick={() => deleteCartItem(cartItem)}>
           &#10094;
         </div>
@@ -30,12 +36,10 @@ const CheckoutItem: React.FC<IProps> = ({ cartItem, deleteCartItem, clearItemFro
         <div className="arrow" onClick={() => addCartItem(cartItem)}>
           &#10095;
         </div>
-      </span>
-      <span className="price">{price}</span>
-      <div className="remove-button" onClick={() => clearItemFromCart(cartItem)}>
-        &#10005;
-      </div>
-    </div>
+      </QuantityContainer>
+      <TextContainer>{price}</TextContainer>
+      <RemoveButtonContainer onClick={() => clearItemFromCart(cartItem)}>&#10005;</RemoveButtonContainer>
+    </CheckoutItemContainer>
   )
 }
 
