@@ -1,8 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { ReactComponent as Logo } from '../../assets/crown.svg'
 
-import './Header.styles.scss'
 import { connect } from 'react-redux'
 import { AppState } from '../../store/rootReducer'
 import { userSelector } from '../../store/modules/auth/authSelectors'
@@ -12,6 +10,8 @@ import { showCartIconSelector } from '../../store/modules/UI/uiSelectors'
 import CartDropdown from '../Cart/CartDropdown/CartDropdown'
 import CartIcon from '../Cart/CartIcon/CartIcon'
 
+import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink, OptionLinkSignOut } from './Header.styles'
+
 interface IProps {
   user: IUser | null
   logoutRequest: () => void
@@ -20,31 +20,25 @@ interface IProps {
 
 const Header: React.FC<IProps> = ({ user, logoutRequest, hidden }) => {
   return (
-    <div className="header">
-      <Link className="logo-container" to="/">
+    <HeaderContainer>
+      <LogoContainer to="/">
         <Logo className="logo" />
-      </Link>
-      <div className="options">
+      </LogoContainer>
+      <OptionsContainer>
         {user && user.email}
-        <Link className="option" to="/shop">
-          SHOP
-        </Link>
-        <Link className="option" to="/shop">
-          CONTACT
-        </Link>
+        <OptionLink to="/shop">SHOP</OptionLink>
+        <OptionLink to="/shop">CONTACT</OptionLink>
         {user ? (
-          <div style={{ cursor: 'pointer' }} className="option" onClick={logoutRequest}>
+          <OptionLinkSignOut as="div" onClick={logoutRequest}>
             SIGN OUT
-          </div>
+          </OptionLinkSignOut>
         ) : (
-          <Link className="option" to="/signin">
-            SIGN IN
-          </Link>
+          <OptionLink to="/signin">SIGN IN</OptionLink>
         )}
         <CartIcon />
-      </div>
+      </OptionsContainer>
       {hidden ? null : <CartDropdown />}
-    </div>
+    </HeaderContainer>
   )
 }
 
