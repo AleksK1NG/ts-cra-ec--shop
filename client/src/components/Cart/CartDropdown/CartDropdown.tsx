@@ -1,6 +1,5 @@
 import React from 'react'
 
-import CustomButton from '../../Shared/CustomButton/CustomButton'
 import { connect } from 'react-redux'
 import { AppState } from '../../../store/rootReducer'
 import { withRouter } from 'react-router-dom'
@@ -9,7 +8,13 @@ import { cartItemsSelector } from '../../../store/modules/cart/cartSelectors'
 import { toggleCartHidden } from '../../../store/modules/UI/uiActions'
 
 import CartItem from '../CartItem/CartItem'
-import './CartDropdown.styles.scss'
+import {
+  CartDropdownContainer,
+  EmptyMessageContainer,
+  CartItemsContainer,
+  CartDropdownButton
+} from './CartDropdown.styles'
+import CustomButton from '../../Shared/CustomButton/CustomButton'
 
 interface IProps extends RouteComponentProps {
   cartItems: any[]
@@ -23,16 +28,16 @@ const CartDropdown: React.FC<IProps> = ({ history, toggleCartHidden, cartItems }
   }
 
   return (
-    <div className="cart-dropdown">
-      <div className="cart-items">
+    <CartDropdownContainer>
+      <CartItemsContainer>
         {cartItems.length ? (
           cartItems.map((cartItem) => <CartItem key={cartItem.id} item={cartItem} />)
         ) : (
-          <span className="empty-message">Your cart is empty</span>
+          <EmptyMessageContainer>Your cart is empty</EmptyMessageContainer>
         )}
-      </div>
+      </CartItemsContainer>
       <CustomButton onClick={goCheckoutHandler}>GO TO CHECKOUT</CustomButton>
-    </div>
+    </CartDropdownContainer>
   )
 }
 
