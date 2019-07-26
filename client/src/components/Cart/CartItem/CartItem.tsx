@@ -1,6 +1,6 @@
 import React from 'react'
 import { ICollectionItem } from '../../../models/models'
-import './CartItem.styles.scss'
+import { CartItemImage, CartItemContainer, ItemDetailsContainer } from './CartItem.styles'
 
 interface IProps {
   item: ICollectionItem
@@ -8,15 +8,15 @@ interface IProps {
 
 const CartItem: React.FC<IProps> = ({ item: { id, imageUrl, name, price, quantity } }) => {
   return (
-    <div className="cart-item">
-      <img src={imageUrl} alt="item" />
-      <div className="item-details">
+    <CartItemContainer>
+      <CartItemImage src={imageUrl} alt="item" />
+      <ItemDetailsContainer>
         <span className="name">{name}</span>
         <span className="price">
           {quantity} x ${price}
         </span>
-      </div>
-    </div>
+      </ItemDetailsContainer>
+    </CartItemContainer>
   )
 }
 
