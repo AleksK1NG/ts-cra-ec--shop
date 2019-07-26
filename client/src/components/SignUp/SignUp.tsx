@@ -5,7 +5,7 @@ import FormInput from '../Shared/FormInput/FormInput'
 import CustomButton from '../Shared/CustomButton/CustomButton'
 import { useForm } from '../../hooks/useForm'
 
-import './SignUp.styles.scss'
+import { SignUpContainer, SignUpTitle } from './SignUp.styles'
 
 interface IProps {
   registerRequest: (userData: any) => void
@@ -33,8 +33,8 @@ const SignUp: React.FC<IProps> = ({ registerRequest }) => {
   }
 
   return (
-    <div className="sign-up">
-      <h2 className="title">I do not have a account</h2>
+    <SignUpContainer>
+      <SignUpTitle>I do not have a account</SignUpTitle>
       <span>Sign up with your email and password</span>
       <form className="sign-up-form" onSubmit={handleSubmit}>
         <FormInput
@@ -64,7 +64,7 @@ const SignUp: React.FC<IProps> = ({ registerRequest }) => {
         />
         <CustomButton type="submit">SIGN UP</CustomButton>
       </form>
-    </div>
+    </SignUpContainer>
   )
 }
 
