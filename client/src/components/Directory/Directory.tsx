@@ -6,7 +6,7 @@ import { sectionsSelector } from '../../store/modules/directory/directorySelecto
 import { ISection } from '../../store/modules/directory/mockData'
 import MenuItem from '../Menu/MenuItem/MenuItem'
 
-import './Directory.styles.scss'
+import { DirectoryMenuContainer } from './Directory.styles'
 
 interface IProps {
   sections: ISection[]
@@ -14,11 +14,11 @@ interface IProps {
 
 const Directory: React.FC<IProps> = ({ sections }) => {
   return (
-    <div className="directory-menu">
+    <DirectoryMenuContainer>
       {sections.map(({ id, title, imageUrl, size, linkUrl }: ISection) => (
         <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} linkUrl={linkUrl} />
       ))}
-    </div>
+    </DirectoryMenuContainer>
   )
 }
 
