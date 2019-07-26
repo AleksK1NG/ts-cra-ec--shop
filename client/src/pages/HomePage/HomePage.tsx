@@ -1,13 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import './HomePage.styles.scss'
 import Directory from '../../components/Directory/Directory'
+
+import { HomePageContainer } from './HomePage.styles'
 
 const HomePage: React.FC = () => {
   return (
-    <div className="homepage">
+    <HomePageContainer>
       <Directory />
-    </div>
+    </HomePageContainer>
   )
 }
 
