@@ -9,9 +9,17 @@ import {
   getItemsError,
   getItemsSuccess,
   getPostsError,
-  getPostsSuccess
+  getPostsSuccess,
+  stripePaymentError
 } from './shopActions'
-import { GET_ALL_CATEGORIES_REQUEST, GET_CATEGORY_ITEMS_REQUEST, GET_ITEMS_REQUEST, shopActions } from './types'
+import {
+  GET_ALL_CATEGORIES_REQUEST,
+  GET_CATEGORY_ITEMS_REQUEST,
+  GET_ITEMS_REQUEST,
+  ShopAction,
+  shopActions,
+  ShopTypes
+} from './types'
 
 export function* getPostsSaga(): any {
   console.log('before')
@@ -60,11 +68,24 @@ export function* getCategoryItemsSaga(action: any): any {
   }
 }
 
+export function* stripePaymentSaga({ payload }: ShopAction): any {
+  try {
+    const data = yield call(ApiService.stripePayment, payload.paymentData)
+    debugger
+
+    console.log('Stripe payment data response => ', data)
+  } catch (error) {
+    console.error(error)
+    yield put(stripePaymentError(error))
+  }
+}
+
 export function* saga() {
   yield all([
     takeLatest(shopActions.GET_POSTS_REQUEST, getPostsSaga),
     takeLatest(GET_ALL_CATEGORIES_REQUEST, getAllCategoriesSaga),
     takeLatest(GET_ITEMS_REQUEST, getAllItemsSaga),
-    takeLatest(GET_CATEGORY_ITEMS_REQUEST, getCategoryItemsSaga)
+    takeLatest(GET_CATEGORY_ITEMS_REQUEST, getCategoryItemsSaga),
+    takeLatest(ShopTypes.STRIPE_PAYMENT_REQUEST, stripePaymentSaga)
   ])
 }

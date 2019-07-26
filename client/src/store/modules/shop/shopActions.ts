@@ -9,10 +9,12 @@ import {
   GET_ITEMS_REQUEST,
   GET_ITEMS_SUCCESS,
   PostActions,
+  ShopAction,
   ShopActions,
-  shopActions
+  shopActions,
+  ShopTypes
 } from './types'
-import { ICategory, IItem } from '../../../models/models'
+import { ICategory, IItem, IPaymentData } from '../../../models/models'
 
 export const getPostsRequest = (): PostActions => ({
   type: shopActions.GET_POSTS_REQUEST
@@ -68,5 +70,20 @@ export const getCategoryItemsSuccess = (items: IItem[], categoryId: string): Sho
 
 export const getCategoryItemsError = (error: any): ShopActions => ({
   type: GET_CATEGORY_ITEMS_ERROR,
+  payload: { error }
+})
+
+export const stripePaymentRequest = (paymentData: IPaymentData): ShopAction => ({
+  type: ShopTypes.STRIPE_PAYMENT_REQUEST,
+  payload: { paymentData }
+})
+
+export const stripePaymentSuccess = (paymentData: any): ShopAction => ({
+  type: ShopTypes.STRIPE_PAYMENT_SUCCESS,
+  payload: { paymentData }
+})
+
+export const stripePaymentError = (error: any): ShopAction => ({
+  type: ShopTypes.STRIPE_PAYMENT_ERROR,
   payload: { error }
 })

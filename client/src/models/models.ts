@@ -1,3 +1,5 @@
+import { Token } from 'react-stripe-checkout'
+
 export interface ISection {
   title: string
   imageUrl: string
@@ -24,7 +26,6 @@ export interface IItem {
   updatedAt: string
 }
 
-
 export interface ICollectionItem {
   id: string | number
   imageUrl: string
@@ -40,4 +41,9 @@ export interface IUser {
   avatar?: string
   info?: string
   token?: string
+}
+
+export interface IPaymentData {
+  amount: number
+  token: string
 }

@@ -75,3 +75,16 @@ export type ShopActions =
   | GetCategoryItemsRequest
   | GetCategoryItemsSuccess
   | GetCategoryItemsError
+
+// *************************************
+
+export interface ShopAction extends AnyAction {
+  payload?: any
+}
+
+export enum ShopTypes {
+  STRIPE_PAYMENT_REQUEST = 'STRIPE_PAYMENT_REQUEST',
+  STRIPE_PAYMENT_SUCCESS = 'STRIPE_PAYMENT_SUCCESS',
+  STRIPE_PAYMENT_ERROR = 'STRIPE_PAYMENT_ERROR'
+}
+
