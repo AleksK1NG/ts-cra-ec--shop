@@ -1,8 +1,8 @@
 import React, { Fragment, Suspense, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
-import Header from './components/Header/Header'
 import { loadUserRequest } from './store/modules/auth/authActions'
+import Header from './components/Header/Header'
 import { GlobalStyle } from './globalStyles'
 
 const Routes = React.lazy(() => import('./routes/routes'))

@@ -23,10 +23,6 @@ export interface ShopState {
   categories: ICategory[]
   items: IItem[] | null
 }
-interface Action {
-  type: string
-  payload?: any
-}
 
 const initialState: ShopState = {
   collections: SHOP_DATA,
