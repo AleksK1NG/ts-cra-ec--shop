@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { AppState } from '../../store/rootReducer'
 import { cartItemsSelector, cartItemsTotalSelector } from '../../store/modules/cart/cartSelectors'
 import CheckoutItem from '../../components/Checkout/CheckoutItem/CheckoutItem'
-import { ICollectionItem } from '../../models/models'
+import { ICollectionItem, IItem } from '../../models/models'
 import StripeCheckoutButton from '../../components/StripeCheckoutButton/StripeCheckoutButton'
 
 import {
@@ -15,7 +15,7 @@ import {
 } from './CheckoutPage.styles'
 
 interface IProps {
-  cartItems: ICollectionItem[]
+  cartItems: IItem[]
   total: number
 }
 
@@ -39,8 +39,8 @@ const CheckoutPage: React.FC<IProps> = ({ cartItems, total }) => {
           <span>Remove</span>
         </HeaderBlockContainer>
       </CheckoutHeaderContainer>
-      {cartItems.map((cartItem) => (
-        <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+      {cartItems.map((cartItem: IItem) => (
+        <CheckoutItem key={cartItem._id} cartItem={cartItem} />
       ))}
       <TotalContainer>TOTAL: ${total}</TotalContainer>
       <WarningContainer>

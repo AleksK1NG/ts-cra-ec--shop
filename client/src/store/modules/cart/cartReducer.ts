@@ -17,7 +17,7 @@ export const cartReducer = (state = initialState, action: CartAction): CartState
     switch (type) {
       case CartTypes.ADD_CART_ITEM:
         // find index of item in array
-        index = draft.cartItems.findIndex((cartItem) => cartItem.id === payload.item.id)
+        index = draft.cartItems.findIndex((cartItem) => cartItem._id === payload.item._id)
 
         // if item exists in array, quantity++
         if (index >= 0) {
@@ -29,7 +29,7 @@ export const cartReducer = (state = initialState, action: CartAction): CartState
         return
 
       case CartTypes.DELETE_CART_ITEM:
-        index = draft.cartItems.findIndex((cartItem) => cartItem.id === payload.item.id)
+        index = draft.cartItems.findIndex((cartItem) => cartItem._id === payload.item._id)
 
         if (index >= 0 && draft.cartItems[index].quantity > 1) {
           draft.cartItems[index].quantity--
@@ -39,7 +39,7 @@ export const cartReducer = (state = initialState, action: CartAction): CartState
         return
 
       case CartTypes.CLEAR_ITEM_FROM_CART:
-        index = draft.cartItems.findIndex((cartItem) => cartItem.id === payload.item.id)
+        index = draft.cartItems.findIndex((cartItem) => cartItem._id === payload.item._id)
 
         draft.cartItems.splice(index, 1)
         return

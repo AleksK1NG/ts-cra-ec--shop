@@ -6,19 +6,21 @@ import { categoryUrlSelector } from '../../store/modules/shop/shopSelectors'
 import { RouteComponentProps } from 'react-router'
 
 import { CollectionTitle, CollectionPageContainer, CollectionItemsContainer } from './CollectionPage.styles'
+import { ICategory } from '../../models/models'
 
 interface MatchParams {
   collectionId: string
 }
 
 interface IProps extends RouteComponentProps<MatchParams> {
-  category: any
+  category?: ICategory
 }
 
 const CollectionPage: React.FC<IProps> = ({ category }) => {
-  const { title, items } = category
-
   console.log('category COLLECTION PAGE => ', category)
+  if (!category) return <div>Loading category...</div>
+
+  const { title, items } = category
   return (
     <CollectionPageContainer>
       <CollectionTitle>{title}</CollectionTitle>

@@ -1,11 +1,3 @@
-import { Token } from 'react-stripe-checkout'
-
-export interface ISection {
-  title: string
-  imageUrl: string
-  _id: string
-  linkUrl: string
-}
 
 export interface ICategory {
   items: IItem[]
@@ -24,6 +16,7 @@ export interface IItem {
   price: number
   createdAt: string
   updatedAt: string
+  quantity?: number
 }
 
 export interface ICollectionItem {
