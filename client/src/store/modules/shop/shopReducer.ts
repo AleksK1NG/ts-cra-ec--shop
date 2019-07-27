@@ -1,7 +1,6 @@
 import { produce } from 'immer'
 import { ShopAction, ShopTypes } from './types'
 import { ICategory, IItem } from '../../../models/models'
-// import { ISCollections, SHOP_DATA } from './mockData'
 import { SHOP_DATA, ISDataCollection } from './shopData'
 
 export interface ShopState {

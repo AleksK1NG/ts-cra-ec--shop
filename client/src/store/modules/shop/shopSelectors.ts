@@ -38,6 +38,11 @@ export const categoryUrlSelector = (url: string) =>
     (categories) => categories.find((category) => category.routeName === url)
   )
 
+export const shopLoadingSelector = createSelector(
+  shopSelector,
+  (shop) => shop.isLoading
+)
+
 // For Map version
 // export const collectionObjSelector = createSelector(
 //   collectionsSelector,

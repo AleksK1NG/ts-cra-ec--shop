@@ -9,7 +9,7 @@ const WithSpinner = <P extends object>(WrappedComponent: React.ComponentType<P>)
   isLoading,
   ...otherProps
 }: WithLoadingProps) => {
-  return isLoading ? <Spinner /> : <WrappedComponent {...(otherProps as P)} />
+  return isLoading ? <Spinner /> : <WrappedComponent {...(otherProps as any)} />
 }
 
 export default WithSpinner
