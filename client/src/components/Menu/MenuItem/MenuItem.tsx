@@ -28,4 +28,4 @@ const MenuItem: React.FC<IProps> = ({ title, imageUrl, size, history, linkUrl, m
   )
 }
 
-export default withRouter(MenuItem)
+export default withRouter(React.memo(MenuItem))
