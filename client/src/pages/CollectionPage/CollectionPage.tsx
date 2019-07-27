@@ -7,6 +7,7 @@ import { RouteComponentProps } from 'react-router'
 
 import { CollectionTitle, CollectionPageContainer, CollectionItemsContainer } from './CollectionPage.styles'
 import { ICategory, IItem } from '../../models/models'
+import Spinner from '../../components/Spinner/Spinner'
 
 interface MatchParams {
   collectionId: string
@@ -18,7 +19,7 @@ interface IProps extends RouteComponentProps<MatchParams> {
 }
 
 const CollectionPage: React.FC<IProps> = ({ category }) => {
-  if (!category) return <div>Loading category...</div>
+  if (!category) return <Spinner />
 
   const { title, items } = category
   return (
