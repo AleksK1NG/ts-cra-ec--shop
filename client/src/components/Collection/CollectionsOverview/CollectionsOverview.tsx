@@ -1,19 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { AppState } from '../../../store/rootReducer'
-import { categoriesSelector, collectionsSelector } from '../../../store/modules/shop/shopSelectors'
-import { ISDataCollection } from '../../../store/modules/shop/shopData'
+import { categoriesSelector } from '../../../store/modules/shop/shopSelectors'
 import CollectionPreview from '../CollectionPreview/CollectionPreview'
 
 import { CollectionsOverviewContainer } from './CollectionsOverview.styles'
 
 interface IProps {
-  collections: ISDataCollection[]
   categories: any
 }
 
-const CollectionsOverview: React.FC<IProps> = ({ collections, categories }) => {
-
+const CollectionsOverview: React.FC<IProps> = ({ categories }) => {
   // console.log('categories OVERVIEW PAGE => ', categories)
   return (
     <CollectionsOverviewContainer>
@@ -26,8 +23,7 @@ const CollectionsOverview: React.FC<IProps> = ({ collections, categories }) => {
 
 export default connect(
   (state: AppState) => ({
-    categories: categoriesSelector(state),
-    collections: collectionsSelector(state)
+    categories: categoriesSelector(state)
   }),
   null
 )(CollectionsOverview)
