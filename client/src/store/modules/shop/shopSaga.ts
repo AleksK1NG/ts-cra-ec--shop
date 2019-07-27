@@ -1,28 +1,37 @@
-import { put, all, takeLatest, call } from 'redux-saga/effects'
+import { put, all, takeLatest, call, takeEvery } from 'redux-saga/effects'
 import ApiService from '../../../services/apiService'
 import {
   getCategoriesError,
   getCategoriesSuccess,
   getCategoryItemsError,
+  getCategoryItemsRequest,
   getCategoryItemsSuccess,
   getItemsError,
   getItemsSuccess,
   stripePaymentError
 } from './shopActions'
-import {
-  GET_ALL_CATEGORIES_REQUEST,
-  GET_CATEGORY_ITEMS_REQUEST,
-  GET_ITEMS_REQUEST,
-  ShopAction,
-  ShopTypes
-} from './types'
+import { GET_CATEGORY_ITEMS_REQUEST, GET_ITEMS_REQUEST, ShopAction, ShopTypes } from './types'
 import { clearCart } from '../cart/cartActions'
 
 export function* getAllCategoriesSaga(): any {
   try {
     const { data } = yield call(ApiService.getAllCategories)
-    debugger
     yield put(getCategoriesSuccess(data))
+    // yield Promise.all(
+    //   data.forEach(async (category: any) => {
+    //     debugger
+    //     if (category._id) {
+    //       put(getCategoryItemsRequest(category._id))
+    //       console.log('category from forEach => ', category)
+    //     }
+    //   })
+    // )
+    // debugger
+    // yield put(getCategoryItemsRequest(data["0"]._id))
+    debugger
+
+    yield all(data.map((d: any) => put(getCategoryItemsRequest(d._id))))
+    debugger
   } catch (error) {
     console.error(error)
     yield put(getCategoriesError(error))
@@ -40,10 +49,11 @@ export function* getAllItemsSaga(): any {
   }
 }
 
-export function* getCategoryItemsSaga(action: any): any {
-  const { payload } = action
+export function* getCategoryItemsSaga({ payload }: any): any {
+  const { categoryId } = payload
+
   try {
-    const { data } = yield call(ApiService.getCategoryItems, payload.categoryId)
+    const { data } = yield call(ApiService.getCategoryItems, categoryId)
     debugger
     yield put(getCategoryItemsSuccess(data, payload.categoryId))
   } catch (error) {
@@ -66,9 +76,8 @@ export function* stripePaymentSaga({ payload }: ShopAction) {
 
 export function* saga() {
   yield all([
-    takeLatest(GET_ALL_CATEGORIES_REQUEST, getAllCategoriesSaga),
-    takeLatest(GET_ITEMS_REQUEST, getAllItemsSaga),
-    takeLatest(GET_CATEGORY_ITEMS_REQUEST, getCategoryItemsSaga),
+    takeLatest(ShopTypes.GET_CATEGORIES_REQUEST, getAllCategoriesSaga),
+    takeEvery(ShopTypes.GET_CATEGORY_ITEMS_REQUEST, getCategoryItemsSaga),
     takeLatest(ShopTypes.STRIPE_PAYMENT_REQUEST, stripePaymentSaga)
   ])
 }

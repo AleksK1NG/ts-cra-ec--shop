@@ -1,7 +1,4 @@
 import {
-  GET_ALL_CATEGORIES_ERROR,
-  GET_ALL_CATEGORIES_REQUEST,
-  GET_ALL_CATEGORIES_SUCCESS,
   GET_CATEGORY_ITEMS_ERROR,
   GET_CATEGORY_ITEMS_REQUEST,
   GET_CATEGORY_ITEMS_SUCCESS,
@@ -14,18 +11,17 @@ import {
 } from './types'
 import { ICategory, IItem, IPaymentData } from '../../../models/models'
 
-
-export const getCategoriesRequest = (): ShopActions => ({
-  type: GET_ALL_CATEGORIES_REQUEST
+export const getCategoriesRequest = (): ShopAction => ({
+  type: ShopTypes.GET_CATEGORIES_REQUEST
 })
 
-export const getCategoriesSuccess = (categories: ICategory[]): ShopActions => ({
-  type: GET_ALL_CATEGORIES_SUCCESS,
+export const getCategoriesSuccess = (categories: any[]): ShopAction => ({
+  type: ShopTypes.GET_CATEGORIES_SUCCESS,
   payload: { categories }
 })
 
-export const getCategoriesError = (error: any): ShopActions => ({
-  type: GET_ALL_CATEGORIES_ERROR,
+export const getCategoriesError = (error: any): ShopAction => ({
+  type: ShopTypes.GET_CATEGORIES_ERROR,
   payload: { error }
 })
 
@@ -43,18 +39,18 @@ export const getItemsError = (error: any): ShopActions => ({
   payload: { error }
 })
 
-export const getCategoryItemsRequest = (categoryId: string): ShopActions => ({
-  type: GET_CATEGORY_ITEMS_REQUEST,
+export const getCategoryItemsRequest = (categoryId: string): ShopAction => ({
+  type: ShopTypes.GET_CATEGORY_ITEMS_REQUEST,
   payload: { categoryId }
 })
 
-export const getCategoryItemsSuccess = (items: IItem[], categoryId: string): ShopActions => ({
-  type: GET_CATEGORY_ITEMS_SUCCESS,
+export const getCategoryItemsSuccess = (items: any[], categoryId: string): ShopAction => ({
+  type: ShopTypes.GET_CATEGORY_ITEMS_SUCCESS,
   payload: { items, categoryId }
 })
 
-export const getCategoryItemsError = (error: any): ShopActions => ({
-  type: GET_CATEGORY_ITEMS_ERROR,
+export const getCategoryItemsError = (error: any): ShopAction => ({
+  type: ShopTypes.GET_CATEGORY_ITEMS_ERROR,
   payload: { error }
 })
 
