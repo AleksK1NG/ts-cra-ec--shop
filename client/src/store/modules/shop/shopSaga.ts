@@ -19,7 +19,7 @@ export function* getAllCategoriesSaga(): any {
     yield put(getCategoriesSuccess(data))
 
     yield all(data.map((d: any) => put(getCategoryItemsRequest(d._id))))
-    debugger
+
   } catch (error) {
     console.error(error)
     yield put(getCategoriesError(error))
@@ -42,7 +42,7 @@ export function* getCategoryItemsSaga({ payload }: any): any {
 
   try {
     const { data } = yield call(ApiService.getCategoryItems, categoryId)
-    debugger
+
     yield put(getCategoryItemsSuccess(data, payload.categoryId))
   } catch (error) {
     console.error(error)

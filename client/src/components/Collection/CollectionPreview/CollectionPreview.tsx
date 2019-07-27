@@ -6,7 +6,7 @@ import { CollectionPreviewContainer, PreviewContainer, TitleContainer } from './
 
 interface IProps {
   title: string
-  items: ICollectionItem[]
+  items: any
   routeName?: string
 }
 
@@ -16,9 +16,9 @@ const CollectionPreview: React.FC<IProps> = ({ title, items, routeName }) => {
       <TitleContainer>{title.toUpperCase()}</TitleContainer>
       <PreviewContainer>
         {items
-          .filter((item, idx) => idx < 4)
-          .map((item: ICollectionItem) => (
-            <CollectionItem key={item.id} item={item} />
+          .filter((item: any, idx: number) => idx < 4)
+          .map((item: any) => (
+            <CollectionItem key={item._id} item={item} />
           ))}
       </PreviewContainer>
     </CollectionPreviewContainer>
