@@ -8,6 +8,7 @@ import { AppState } from '../../store/rootReducer'
 import { getCategoriesRequest } from '../../store/modules/shop/shopActions'
 import { categoriesSelector } from '../../store/modules/shop/shopSelectors'
 import { ICategory } from '../../models/models'
+import Spinner from '../../components/Spinner/Spinner'
 
 const CollectionsOverview = React.lazy(() =>
   import('../../components/Collection/CollectionsOverview/CollectionsOverview')
@@ -24,13 +25,11 @@ const ShopPage: React.FC<IProps> = ({ match, getCategoriesRequest, categories })
     getCategoriesRequest()
   }, [getCategoriesRequest])
 
-  // console.log('categories SHOP PAGE => ', categories)
-
   if (!categories.length) return <div>Loading categories ...</div>
 
   return (
     <ShopPageContainer>
-      <Suspense fallback={<p>Loading ...</p>}>
+      <Suspense fallback={<Spinner />}>
         <Route exact path={`${match.path}`} component={CollectionsOverview} />
         <Route exact path={`${match.path}/:categoryId`} component={CollectionPage} />
       </Suspense>
