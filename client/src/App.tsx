@@ -5,6 +5,7 @@ import { loadUserRequest } from './store/modules/auth/authActions'
 import Header from './components/Header/Header'
 import { GlobalStyle } from './globalStyles'
 import Spinner from './components/Spinner/Spinner'
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'
 
 const Routes = React.lazy(() => import('./routes/routes'))
 
@@ -21,11 +22,13 @@ const App: React.FC<IProps> = ({ loadUserRequest }) => {
     <Fragment>
       <GlobalStyle />
       <Header />
-      <Suspense fallback={<Spinner />}>
-        <Switch>
-          <Route component={Routes} />
-        </Switch>
-      </Suspense>
+      <Switch>
+        <ErrorBoundary>
+          <Suspense fallback={<Spinner />}>
+            <Route component={Routes} />
+          </Suspense>
+        </ErrorBoundary>
+      </Switch>
     </Fragment>
   )
 }
