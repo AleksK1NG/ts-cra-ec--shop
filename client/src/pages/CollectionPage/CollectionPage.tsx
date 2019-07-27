@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { AppState } from '../../store/rootReducer'
 import CollectionItem from '../../components/Collection/CollectionItem/CollectionItem'
-import { categoryUrlSelector, collectionUrlSelector } from '../../store/modules/shop/shopSelectors'
+import { categoryUrlSelector } from '../../store/modules/shop/shopSelectors'
 import { RouteComponentProps } from 'react-router'
 
 import { CollectionTitle, CollectionPageContainer, CollectionItemsContainer } from './CollectionPage.styles'
@@ -12,13 +12,11 @@ interface MatchParams {
 }
 
 interface IProps extends RouteComponentProps<MatchParams> {
-  collection: any
   category: any
 }
 
-const CollectionPage: React.FC<IProps> = ({ collection, category }) => {
+const CollectionPage: React.FC<IProps> = ({ category }) => {
   const { title, items } = category
-
 
   console.log('category COLLECTION PAGE => ', category)
   return (
@@ -35,8 +33,7 @@ const CollectionPage: React.FC<IProps> = ({ collection, category }) => {
 
 export default connect(
   (state: AppState, ownProps: IProps) => ({
-    category: categoryUrlSelector(ownProps.match.params.collectionId)(state),
-    collection: collectionUrlSelector(ownProps.match.params.collectionId)(state)
+    category: categoryUrlSelector(ownProps.match.params.collectionId)(state)
   }),
   null
 )(CollectionPage)

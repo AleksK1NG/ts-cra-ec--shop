@@ -1,15 +1,5 @@
-import {
-  GET_CATEGORY_ITEMS_ERROR,
-  GET_CATEGORY_ITEMS_REQUEST,
-  GET_CATEGORY_ITEMS_SUCCESS,
-  GET_ITEMS_ERROR,
-  GET_ITEMS_REQUEST,
-  GET_ITEMS_SUCCESS,
-  ShopAction,
-  ShopActions,
-  ShopTypes
-} from './types'
-import { ICategory, IItem, IPaymentData } from '../../../models/models'
+import { GET_ITEMS_ERROR, GET_ITEMS_REQUEST, GET_ITEMS_SUCCESS, ShopAction, ShopActions, ShopTypes } from './types'
+import { IItem, IPaymentData } from '../../../models/models'
 
 export const getCategoriesRequest = (): ShopAction => ({
   type: ShopTypes.GET_CATEGORIES_REQUEST
