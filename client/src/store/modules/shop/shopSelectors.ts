@@ -32,6 +32,12 @@ export const categoriesSelector = createSelector(
   (shop: ShopState) => shop.categories
 )
 
+export const categoryUrlSelector = (url: string) =>
+  createSelector(
+    categoriesSelector,
+    (categories) => categories.find((category) => category.routeName === url)
+  )
+
 // For Map version
 // export const collectionObjSelector = createSelector(
 //   collectionsSelector,
