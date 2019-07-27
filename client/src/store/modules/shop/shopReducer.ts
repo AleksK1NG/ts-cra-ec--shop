@@ -1,15 +1,5 @@
 import { produce } from 'immer'
-import {
-  GET_ALL_CATEGORIES_ERROR,
-  GET_ALL_CATEGORIES_REQUEST,
-  GET_ALL_CATEGORIES_SUCCESS,
-  GET_CATEGORY_ITEMS_ERROR,
-  GET_CATEGORY_ITEMS_REQUEST,
-  GET_CATEGORY_ITEMS_SUCCESS,
-  GET_ITEMS_ERROR,
-  GET_ITEMS_REQUEST,
-  ShopActions
-} from './types'
+import { ShopAction, ShopTypes } from './types'
 import { ICategory, IItem } from '../../../models/models'
 // import { ISCollections, SHOP_DATA } from './mockData'
 import { SHOP_DATA, ISDataCollection } from './shopData'
@@ -34,24 +24,24 @@ const initialState: ShopState = {
   items: null
 }
 
-export const shopReducer = (state = initialState, action: ShopActions): ShopState =>
+export const shopReducer = (state = initialState, action: ShopAction): ShopState =>
   produce(state, (draft: ShopState) => {
     const { type, payload } = action
 
     switch (type) {
-      case GET_ALL_CATEGORIES_REQUEST:
-      case GET_CATEGORY_ITEMS_REQUEST:
-      case GET_ITEMS_REQUEST:
+      case ShopTypes.GET_CATEGORY_ITEMS_REQUEST:
+      case ShopTypes.GET_CATEGORIES_REQUEST:
+      case ShopTypes.STRIPE_PAYMENT_REQUEST:
         draft.isLoading = true
         return
 
-      case GET_ALL_CATEGORIES_SUCCESS:
+      case ShopTypes.GET_CATEGORIES_SUCCESS:
         draft.categories = payload.categories
         draft.error = null
         draft.isLoading = false
         return
 
-      case GET_CATEGORY_ITEMS_SUCCESS:
+      case ShopTypes.GET_CATEGORY_ITEMS_SUCCESS:
         if (draft.categories.length !== 0) {
           debugger
           const index = draft.categories.findIndex((cat) => cat._id === payload.categoryId)
@@ -67,9 +57,9 @@ export const shopReducer = (state = initialState, action: ShopActions): ShopStat
         draft.isLoading = false
         return
 
-      case GET_ALL_CATEGORIES_ERROR:
-      case GET_CATEGORY_ITEMS_ERROR:
-      case GET_ITEMS_ERROR:
+      case ShopTypes.GET_CATEGORY_ITEMS_ERROR:
+      case ShopTypes.GET_CATEGORIES_ERROR:
+      case ShopTypes.STRIPE_PAYMENT_ERROR:
         draft.error = payload.error
         draft.isLoading = false
         return
