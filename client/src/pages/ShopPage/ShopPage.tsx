@@ -24,7 +24,7 @@ const ShopPage: React.FC<IProps> = ({ match, getCategoriesRequest, categories, c
     getCategoriesRequest()
   }, [getCategoriesRequest])
 
-  console.log('categories SHOP PAGE => ', categories)
+  // console.log('categories SHOP PAGE => ', categories)
   // console.log('collections => ', collections[0])
 
   if (!categories.length) return <div>Loading categories ...</div>

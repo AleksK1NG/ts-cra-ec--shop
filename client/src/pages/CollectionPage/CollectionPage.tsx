@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { AppState } from '../../store/rootReducer'
 import CollectionItem from '../../components/Collection/CollectionItem/CollectionItem'
-import { collectionUrlSelector } from '../../store/modules/shop/shopSelectors'
+import { categoryUrlSelector, collectionUrlSelector } from '../../store/modules/shop/shopSelectors'
 import { RouteComponentProps } from 'react-router'
 
 import { CollectionTitle, CollectionPageContainer, CollectionItemsContainer } from './CollectionPage.styles'
@@ -13,17 +13,20 @@ interface MatchParams {
 
 interface IProps extends RouteComponentProps<MatchParams> {
   collection: any
+  category: any
 }
 
-const CollectionPage: React.FC<IProps> = ({ collection }) => {
-  const { title, items } = collection
+const CollectionPage: React.FC<IProps> = ({ collection, category }) => {
+  const { title, items } = category
 
+
+  console.log('category COLLECTION PAGE => ', category)
   return (
     <CollectionPageContainer>
       <CollectionTitle>{title}</CollectionTitle>
       <CollectionItemsContainer>
         {items.map((item: any) => (
-          <CollectionItem key={item.id} item={item} />
+          <CollectionItem key={item._id} item={item} />
         ))}
       </CollectionItemsContainer>
     </CollectionPageContainer>
@@ -32,6 +35,7 @@ const CollectionPage: React.FC<IProps> = ({ collection }) => {
 
 export default connect(
   (state: AppState, ownProps: IProps) => ({
+    category: categoryUrlSelector(ownProps.match.params.collectionId)(state),
     collection: collectionUrlSelector(ownProps.match.params.collectionId)(state)
   }),
   null
