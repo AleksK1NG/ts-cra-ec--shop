@@ -7,7 +7,6 @@ import { SHOP_DATA, ISDataCollection } from './shopData'
 export interface ShopState {
   collections: ISDataCollection[]
   name: string
-  posts?: any[] | null
   isLoading: boolean
   error: any
   categories: ICategory[]
@@ -17,7 +16,6 @@ export interface ShopState {
 const initialState: ShopState = {
   collections: SHOP_DATA,
   name: 'Alex',
-  posts: null,
   isLoading: false,
   error: null,
   categories: [],

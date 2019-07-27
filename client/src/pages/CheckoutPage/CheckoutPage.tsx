@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { AppState } from '../../store/rootReducer'
 import { cartItemsSelector, cartItemsTotalSelector } from '../../store/modules/cart/cartSelectors'
 import CheckoutItem from '../../components/Checkout/CheckoutItem/CheckoutItem'
-import { ICollectionItem, IItem } from '../../models/models'
+import { IItem } from '../../models/models'
 import StripeCheckoutButton from '../../components/StripeCheckoutButton/StripeCheckoutButton'
 
 import {

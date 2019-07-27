@@ -12,7 +12,6 @@ interface IProps {
 }
 
 const CollectionsOverview: React.FC<IProps> = ({ categories }) => {
-  // console.log('categories OVERVIEW PAGE => ', categories)
   return (
     <CollectionsOverviewContainer>
       {categories.map((category: ICategory) => (

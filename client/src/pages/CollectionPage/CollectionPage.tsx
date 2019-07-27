@@ -17,7 +17,6 @@ interface IProps extends RouteComponentProps<MatchParams> {
 }
 
 const CollectionPage: React.FC<IProps> = ({ category }) => {
-  console.log('category COLLECTION PAGE => ', category)
   if (!category) return <div>Loading category...</div>
 
   const { title, items } = category
