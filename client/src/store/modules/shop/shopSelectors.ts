@@ -27,6 +27,11 @@ export const collectionUrlSelector = (url: string) =>
     (collections) => collections.find((col) => col.routeName === url)
   )
 
+export const categoriesSelector = createSelector(
+  shopSelector,
+  (shop: ShopState) => shop.categories
+)
+
 // For Map version
 // export const collectionObjSelector = createSelector(
 //   collectionsSelector,

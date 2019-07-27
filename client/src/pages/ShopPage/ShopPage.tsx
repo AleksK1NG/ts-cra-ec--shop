@@ -6,6 +6,7 @@ import { ShopPageContainer } from './ShopPage.styles'
 import { connect } from 'react-redux'
 import { AppState } from '../../store/rootReducer'
 import { getCategoriesRequest } from '../../store/modules/shop/shopActions'
+import { categoriesSelector } from '../../store/modules/shop/shopSelectors'
 
 const CollectionsOverview = React.lazy(() =>
   import('../../components/Collection/CollectionsOverview/CollectionsOverview')
@@ -14,12 +15,15 @@ const CollectionPage = React.lazy(() => import('../CollectionPage/CollectionPage
 
 interface IProps extends RouteComponentProps {
   getCategoriesRequest: () => void
+  categories: any
 }
 
-const ShopPage: React.FC<IProps> = ({ match, getCategoriesRequest }) => {
+const ShopPage: React.FC<IProps> = ({ match, getCategoriesRequest, categories }) => {
   useEffect(() => {
     getCategoriesRequest()
   }, [getCategoriesRequest])
+
+  console.log('categories => ', categories)
 
   return (
     <ShopPageContainer>
@@ -33,5 +37,5 @@ const ShopPage: React.FC<IProps> = ({ match, getCategoriesRequest }) => {
 
 
 export default connect((state: AppState) => ({
-
+  categories: categoriesSelector(state)
 }), {getCategoriesRequest})(ShopPage)

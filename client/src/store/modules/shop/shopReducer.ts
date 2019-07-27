@@ -43,11 +43,9 @@ export const shopReducer = (state = initialState, action: ShopAction): ShopState
 
       case ShopTypes.GET_CATEGORY_ITEMS_SUCCESS:
         if (draft.categories.length !== 0) {
-          debugger
           const index = draft.categories.findIndex((cat) => cat._id === payload.categoryId)
           if (index > -1) {
             draft.categories[index].items = payload.items
-            debugger
             draft.error = null
             draft.isLoading = false
             return

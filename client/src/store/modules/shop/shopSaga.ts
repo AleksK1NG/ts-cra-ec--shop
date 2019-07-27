@@ -10,25 +10,13 @@ import {
   getItemsSuccess,
   stripePaymentError
 } from './shopActions'
-import { GET_CATEGORY_ITEMS_REQUEST, GET_ITEMS_REQUEST, ShopAction, ShopTypes } from './types'
+import { ShopAction, ShopTypes } from './types'
 import { clearCart } from '../cart/cartActions'
 
 export function* getAllCategoriesSaga(): any {
   try {
     const { data } = yield call(ApiService.getAllCategories)
     yield put(getCategoriesSuccess(data))
-    // yield Promise.all(
-    //   data.forEach(async (category: any) => {
-    //     debugger
-    //     if (category._id) {
-    //       put(getCategoryItemsRequest(category._id))
-    //       console.log('category from forEach => ', category)
-    //     }
-    //   })
-    // )
-    // debugger
-    // yield put(getCategoryItemsRequest(data["0"]._id))
-    debugger
 
     yield all(data.map((d: any) => put(getCategoryItemsRequest(d._id))))
     debugger
