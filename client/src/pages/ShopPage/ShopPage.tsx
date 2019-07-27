@@ -25,7 +25,7 @@ const ShopPage: React.FC<IProps> = ({ match, getCategoriesRequest, categories })
     getCategoriesRequest()
   }, [getCategoriesRequest])
 
-  if (!categories.length) return <div>Loading categories ...</div>
+  if (!categories.length) return <Spinner />
 
   return (
     <ShopPageContainer>
