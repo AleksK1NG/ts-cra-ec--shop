@@ -6,10 +6,11 @@ import { categoryUrlSelector } from '../../store/modules/shop/shopSelectors'
 import { RouteComponentProps } from 'react-router'
 
 import { CollectionTitle, CollectionPageContainer, CollectionItemsContainer } from './CollectionPage.styles'
-import { ICategory } from '../../models/models'
+import { ICategory, IItem } from '../../models/models'
 
 interface MatchParams {
   collectionId: string
+  categoryId: string
 }
 
 interface IProps extends RouteComponentProps<MatchParams> {
@@ -24,7 +25,7 @@ const CollectionPage: React.FC<IProps> = ({ category }) => {
     <CollectionPageContainer>
       <CollectionTitle>{title}</CollectionTitle>
       <CollectionItemsContainer>
-        {items.map((item: any) => (
+        {items.map((item: IItem) => (
           <CollectionItem key={item._id} item={item} />
         ))}
       </CollectionItemsContainer>
@@ -34,7 +35,7 @@ const CollectionPage: React.FC<IProps> = ({ category }) => {
 
 export default connect(
   (state: AppState, ownProps: IProps) => ({
-    category: categoryUrlSelector(ownProps.match.params.collectionId)(state)
+    category: categoryUrlSelector(ownProps.match.params.categoryId)(state)
   }),
   null
 )(CollectionPage)

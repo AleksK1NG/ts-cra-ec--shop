@@ -32,7 +32,7 @@ const ShopPage: React.FC<IProps> = ({ match, getCategoriesRequest, categories })
     <ShopPageContainer>
       <Suspense fallback={<p>Loading ...</p>}>
         <Route exact path={`${match.path}`} component={CollectionsOverview} />
-        <Route exact path={`${match.path}/:collectionId`} component={CollectionPage} />
+        <Route exact path={`${match.path}/:categoryId`} component={CollectionPage} />
       </Suspense>
     </ShopPageContainer>
   )
