@@ -1,12 +1,12 @@
 import React from 'react'
-import { ICollectionItem } from '../../../models/models'
+import { IItem } from '../../../models/models'
 import { CartItemImage, CartItemContainer, ItemDetailsContainer } from './CartItem.styles'
 
 interface IProps {
-  item: ICollectionItem
+  item: IItem
 }
 
-const CartItem: React.FC<IProps> = ({ item: { id, imageUrl, name, price, quantity } }) => {
+const CartItem: React.FC<IProps> = ({ item: { imageUrl, name, price, quantity } }) => {
   return (
     <CartItemContainer>
       <CartItemImage src={imageUrl} alt="item" />

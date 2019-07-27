@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addCartItem } from '../../../store/modules/cart/cartActions'
-import { ICollectionItem } from '../../../models/models'
+import { IItem } from '../../../models/models'
 
 import {
   CollectionItemContainer,
@@ -13,8 +13,8 @@ import {
 } from './CollectionItem.styles'
 
 interface IProps {
-  item: ICollectionItem
-  addCartItem: (item: any) => void
+  item: IItem
+  addCartItem: (item: IItem) => void
 }
 
 const CollectionItem: React.FC<IProps> = ({ item, addCartItem }) => {

@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { AppState } from '../../store/rootReducer'
 import { getCategoriesRequest } from '../../store/modules/shop/shopActions'
 import { categoriesSelector } from '../../store/modules/shop/shopSelectors'
+import { ICategory } from '../../models/models'
 
 const CollectionsOverview = React.lazy(() =>
   import('../../components/Collection/CollectionsOverview/CollectionsOverview')
@@ -15,7 +16,7 @@ const CollectionPage = React.lazy(() => import('../CollectionPage/CollectionPage
 
 interface IProps extends RouteComponentProps {
   getCategoriesRequest: () => void
-  categories: any
+  categories: ICategory[]
 }
 
 const ShopPage: React.FC<IProps> = ({ match, getCategoriesRequest, categories }) => {

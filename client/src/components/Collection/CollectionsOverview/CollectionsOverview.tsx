@@ -5,16 +5,17 @@ import { categoriesSelector } from '../../../store/modules/shop/shopSelectors'
 import CollectionPreview from '../CollectionPreview/CollectionPreview'
 
 import { CollectionsOverviewContainer } from './CollectionsOverview.styles'
+import { ICategory } from '../../../models/models'
 
 interface IProps {
-  categories: any
+  categories: ICategory[]
 }
 
 const CollectionsOverview: React.FC<IProps> = ({ categories }) => {
   // console.log('categories OVERVIEW PAGE => ', categories)
   return (
     <CollectionsOverviewContainer>
-      {categories.map((category: any) => (
+      {categories.map((category: ICategory) => (
         <CollectionPreview key={category._id} {...category} />
       ))}
     </CollectionsOverviewContainer>

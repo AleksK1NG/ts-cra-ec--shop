@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ICollectionItem } from '../../../models/models'
+import { ICollectionItem, IItem } from '../../../models/models'
 import { connect } from 'react-redux'
 import { addCartItem, clearItemFromCart, deleteCartItem } from '../../../store/modules/cart/cartActions'
 
@@ -13,10 +13,10 @@ import {
 } from './CheckoutItem.styles'
 
 interface IProps {
-  cartItem: ICollectionItem
-  addCartItem: (item: any) => void
-  deleteCartItem: (item: any) => void
-  clearItemFromCart: (item: any) => void
+  cartItem: IItem
+  addCartItem: (item: IItem) => void
+  deleteCartItem: (item: IItem) => void
+  clearItemFromCart: (item: IItem) => void
 }
 
 const CheckoutItem: React.FC<IProps> = ({ cartItem, deleteCartItem, clearItemFromCart, addCartItem }) => {
