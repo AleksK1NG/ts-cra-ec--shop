@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 
 import { connect } from 'react-redux'
 import { AppState } from '../../../store/rootReducer'
@@ -26,16 +26,12 @@ const CartDropdown: React.FC<IProps> = ({ history, toggleCartHidden, cartItems }
     history.push('/checkout')
     toggleCartHidden()
   }
-  console.log('cartitems CHECKOUT PAGE => ', cartItems)
+
   return (
     <CartDropdownContainer>
       <CartItemsContainer>
         {cartItems.length ? (
-          cartItems.map((cartItem: IItem) => (
-            <Fragment key={cartItem._id}>
-              <CartItem key={cartItem._id} item={cartItem} />
-            </Fragment>
-          ))
+          cartItems.map((cartItem: IItem) => <CartItem key={cartItem._id} item={cartItem} />)
         ) : (
           <EmptyMessageContainer>Your cart is empty</EmptyMessageContainer>
         )}

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ICollectionItem, IItem } from '../../../models/models'
+import { IItem } from '../../../models/models'
 import { connect } from 'react-redux'
 import { addCartItem, clearItemFromCart, deleteCartItem } from '../../../store/modules/cart/cartActions'
 
