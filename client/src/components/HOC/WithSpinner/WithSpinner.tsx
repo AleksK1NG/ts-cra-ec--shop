@@ -15,3 +15,4 @@ const WithSpinner = <P extends object>(WrappedComponent: React.ComponentType<P>)
 export default WithSpinner
 
 // https://medium.com/@jrwebdev/react-higher-order-component-patterns-in-typescript-42278f7590fb
+
