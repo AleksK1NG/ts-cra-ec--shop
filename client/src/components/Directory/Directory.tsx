@@ -9,13 +9,13 @@ import MenuItem from '../Menu/MenuItem/MenuItem'
 import { DirectoryMenuContainer } from './Directory.styles'
 
 interface IProps {
-  sections: ISection[]
+  sections?: ISection[]
 }
 
 const Directory: React.FC<IProps> = ({ sections }) => {
   return (
     <DirectoryMenuContainer>
-      {sections.map(({ id, title, imageUrl, size, linkUrl }: ISection) => (
+      {sections && sections.map(({ id, title, imageUrl, size, linkUrl }: ISection) => (
         <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} linkUrl={linkUrl} />
       ))}
     </DirectoryMenuContainer>
